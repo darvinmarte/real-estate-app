@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Tom Johnson",
+    "email": "tom@gmail.com",
+    "password": "password01"
+  },
+  {
+    "name": "Jessica Caban",
+    "email": "jess@aol.com",
+    "password": "password02"
+  },
+  {
+    "name": "Oliver Twist",
+    "email": "oliver@yahoo.com",
+    "password": "password03"
+  },
+  {
+    "name": "Aimee Carol",
+    "email": "aimee@gmail.com",
+    "password": "password04"
+  },
+  {
+    "name": "David Miller",
+    "email": "david@aol.com",
+    "password": "password05"
+  }
+]
