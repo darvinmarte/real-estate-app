@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -18,7 +19,7 @@ const Header = () => {
             <Nav.Link href="/signup">Signup</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-    
+
       </Container>
     </Navbar>
   );
