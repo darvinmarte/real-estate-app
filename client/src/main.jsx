@@ -5,6 +5,7 @@ import App from './App.jsx';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Listings from './pages/Listings.jsx';
 
 import { ThemeProvider, createTheme} from '@mui/material'
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
+      },
+      {
+        path: '/listings',
+        element: <Listings />
       },
       {
         path: '/login',

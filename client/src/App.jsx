@@ -1,8 +1,9 @@
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
-
+import { ListingsProvider } from './utils/ListingsContext';
 import './app.css';
+import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from './components/Header';
@@ -37,7 +38,10 @@ function App() {
       <div className="flex-column justify-flex-start min-100-vh">
         <Header />
         <div className="container">
+          <ListingsProvider>
+
           <Outlet />
+          </ListingsProvider>
         </div>
         <Footer />
       </div>
