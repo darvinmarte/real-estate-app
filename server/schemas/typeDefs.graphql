@@ -1,22 +1,50 @@
 const typeDefs = `
   type User {
-    _id: ID
-    name: String
-    email: String
-    password: String
+    _id: ID!
+    name: String!
+    email: String!
+    password: String!
   }
 
   type Auth {
     token: ID!
-    user: User
+    user: User!
+  }
+
+  type ForumTopic {
+    _id: ID!
+    title: String!
+    content: String!
+    author: User!
+  }
+
+  type ForumComment {
+    _id: ID!
+    content: String!
+    author: User!
+    topic: ForumTopic!
   }
 
   type Query {
-    # queries will be here
+    #queries for User
+
+
+    # queries for Forum
+    getAllForumTopics: [ForumTopic]!
+    getOneForumTopic(topicId: ID!): ForumTopic
+    getForumComments(topicId: ID!): ForumComment
   }
 
   type Mutation {
-    # mutations will be here
+    #mutations for User
+
+
+
+    # mutations for Forum
+    addForumTopic(title: Spring!, content: String!, author: User!): ForumTopic
+    addForumComment(content: String!, author: User!, topic: ForumTopic!): ForumComment
+    removeForumTopic: ForumTopic
+    removeForumComment: ForumComment
   }
 `;
 
