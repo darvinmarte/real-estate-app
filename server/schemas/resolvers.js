@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, ForumTopic, ForumComment } = require("../models");
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
