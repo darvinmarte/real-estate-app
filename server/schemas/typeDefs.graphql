@@ -38,11 +38,13 @@ const typeDefs = `
   type Mutation {
     #mutations for User
 
+    addProfile(name: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
 
 
     # mutations for Forum
-    addForumTopic(title: Spring!, content: String!, author: User!): ForumTopic
-    addForumComment(content: String!, author: User!, topic: ForumTopic!): ForumComment
+    addForumTopic(title: String!, content: String!, author: String!): ForumTopic
+    addForumComment(content: String!, author: String!, topic: String!): ForumComment
     removeForumTopic: ForumTopic
     removeForumComment: ForumComment
   }
