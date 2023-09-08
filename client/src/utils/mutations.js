@@ -25,3 +25,25 @@ export const ADD_PROFILE = gql`
     }
   }
 `;
+
+
+export const ADD_TOPIC = gql`
+  mutation addForumTopic($title: String!, $content: String!) {
+    addForumTopic(title: $title, content: $content) {
+      _id
+      title
+      content
+      author
+      createdAt
+    }
+  }
+`;
+
+export const SIGN_OUT_MUTATION = gql`
+mutation {
+  signOut {
+    success
+    message
+  }
+}
+`;
