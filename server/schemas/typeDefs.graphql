@@ -1,3 +1,4 @@
+
 const typeDefs = `
   type User {
     _id: ID!
@@ -26,6 +27,13 @@ const typeDefs = `
     topic: ForumTopic!
   }
 
+  type ListingComment {
+    zID: String!
+    comment: String!
+    authorName: String!
+    dateCreated: String
+    }
+
   type Query {
     #queries for User
 
@@ -34,6 +42,9 @@ const typeDefs = `
     getAllForumTopics: [ForumTopic]!
     getOneForumTopic(topicId: ID!): ForumTopic
     getForumComments(topicId: ID!): ForumComment
+
+    #queries for ListingComments
+    listingComments(zID: ID!):[ListingComment]
   }
 
   type Mutation {
@@ -48,6 +59,9 @@ const typeDefs = `
     addForumComment(content: String!, author: String!, topicId: ID!): ForumComment
     removeForumTopic: ForumTopic
     removeForumComment: ForumComment
+
+    #mutation for ListingComments
+    addListingComment(zID:ID!, comment: String!, authorName: String!): ListingComment
   }
 `;
 
