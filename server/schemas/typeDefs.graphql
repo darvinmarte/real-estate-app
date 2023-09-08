@@ -16,6 +16,7 @@ const typeDefs = `
     title: String!
     content: String!
     author: User!
+    createdAt: String!
   }
 
   type ForumComment {
