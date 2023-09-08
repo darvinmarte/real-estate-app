@@ -16,6 +16,7 @@ const Header = () => {
             <Nav.Link href="/forum">Forum</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/signup">Signup</Nav.Link>
+            <Nav.Link href="/signout">Sign Out</Nav.Link>
           </Nav>
         </Navbar.Collapse>
 
@@ -25,3 +26,4 @@ const Header = () => {
 };
 
 export default Header;
+

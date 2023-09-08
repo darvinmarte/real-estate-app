@@ -1,3 +1,4 @@
+const { useForkRef } = require("@mui/material");
 const { User, ForumTopic, ForumComment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
@@ -39,7 +40,24 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-  },
+  login: async (parent, { email, password }) => {
+    console.log(email, password )
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw AuthenticationError
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw AuthenticationError
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    }
+}
 };
 
 module.exports = resolvers;
