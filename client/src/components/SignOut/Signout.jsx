@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { SIGN_OUT_MUTATION } from '../utils/mutations'
+import { SIGN_OUT_MUTATION } from '../../utils/mutations'
 
 const SignOut = () => {
     const [signOut] = useMutation(SIGN_OUT_MUTATION);
@@ -26,3 +26,5 @@ const SignOut = () => {
 };
 
 export default SignOut;
+
+// react comp Navigate , useNav 
