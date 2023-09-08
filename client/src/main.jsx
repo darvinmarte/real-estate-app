@@ -7,9 +7,20 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Listings from './pages/Listings.jsx';
 
+import { ThemeProvider, createTheme} from '@mui/material'
 
 import ErrorPage from './pages/ErrorPage';
 
+const theme = createTheme({
+  palette:{
+    primary: {
+      main: '#216869'
+    },
+    secondary: {
+      main: '#9CC5A1'
+    }
+  }
+})
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,5 +48,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <ThemeProvider theme={theme}>
   <RouterProvider router={router} />
+  </ThemeProvider>
 )

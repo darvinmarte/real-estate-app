@@ -3,6 +3,7 @@ import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
 import { ListingsProvider } from './utils/ListingsContext';
 import './app.css';
+import './style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from './components/Header';
