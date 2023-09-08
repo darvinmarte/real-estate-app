@@ -46,6 +46,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <SignUp />
       },
+      {
+        path: '/listings/:zID',
+        element: <SingleListing />
+      },
     ]
   },
 ]);
