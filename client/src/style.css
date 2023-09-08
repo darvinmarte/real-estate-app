@@ -5,3 +5,8 @@
      --light: #9CC5A1;
      --gray: #DCE1DE
  }
+
+.navbar-fill {
+    background-color: var(--light);
+    color: var(--dark)
+}

@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 
 const Header = () => {
   return (
-    <Navbar>
+    <Navbar className="navbar-fill">
       <Container className="container text-center">
         <Navbar.Brand href="/">PropertyPulse</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
