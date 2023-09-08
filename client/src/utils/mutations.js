@@ -25,3 +25,12 @@ export const ADD_PROFILE = gql`
     }
   }
 `;
+
+export const SIGN_OUT_MUTATION = gql`
+mutation {
+  signOut {
+    success
+    message
+  }
+}
+`;

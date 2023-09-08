@@ -9,6 +9,7 @@ import Listings from './pages/Listings.jsx';
 
 
 import ErrorPage from './pages/ErrorPage';
+import SignOut from './components/SignOut/Signout.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignUp />
+      },
+      {
+        path: '/signout',
+        element: <SignOut />
       },
     ]
   },
