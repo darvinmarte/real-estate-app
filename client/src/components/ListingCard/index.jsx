@@ -1,6 +1,7 @@
 import { Card, CardActions, CardMedia, CardActionArea, Typography,CardContent
  } from "@mui/material";
 
+import { Link } from 'react-router-dom';
 
 const ListingCard =({listings}) =>{
 
@@ -13,12 +14,12 @@ if(listings == undefined){
         </div>
     )
 }else{
-    const listingData = listings;
+
     return (
         <div>
-            {listingData.results.map((listing) => (
-
-            <Card key={listing.zpid}>
+            {listings.results.map((listing) => (
+            <Link key={listing.zpid} to={`/listings/${listing.zpid}`}>
+            <Card >
                 <CardActionArea>
                     <CardMedia
                         component="img"
@@ -39,12 +40,8 @@ if(listings == undefined){
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    {/* <Button size="small" color="primary">
-                        Share
-                    </Button> */}
-                </CardActions>
             </Card>
+            </Link>
 
             ))}
 

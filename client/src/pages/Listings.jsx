@@ -1,5 +1,5 @@
 import { useState } from "react";
-import searchCity from "../utils/API";
+import {searchCity} from "../utils/API";
 
 import {Button, Container, TextField} from '@mui/material';
 import ListingCard from "../components/ListingCard";
