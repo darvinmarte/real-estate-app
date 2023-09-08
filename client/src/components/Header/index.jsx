@@ -8,14 +8,14 @@ const Header = () => {
   return (
     <Navbar>
       <Container className="container text-center">
-        <Navbar.Brand>PropertyPulse</Navbar.Brand>
+        <Navbar.Brand href="/">PropertyPulse</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="navbar">
             <Nav.Link href="/listings">Listings</Nav.Link>
             <Nav.Link href="/forum">Forum</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/signup">Signup</Nav.Link>
+            {/* <Nav.Link href="/signup">Signup</Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
 
