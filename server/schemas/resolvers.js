@@ -1,5 +1,5 @@
 const { User, ForumTopic, ForumComment } = require("../models");
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -13,8 +13,6 @@ const resolvers = {
     getOneForumTopic: async (parent, { topicId }) => {
       return ForumTopic.findOne({ _id: topicId });
     },
-
-  
   },
   Mutation: {
     addProfile: async (parent, { name, email, password }) => {
@@ -22,6 +20,25 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+    addForumTopic: async (parent, { title, content }, context) => {
+      if (context.user) {
+        const topic = await ForumTopic.create({
+          title,
+          content, 
+          author: context.user.name,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { posts: topic._id } }
+        );
+
+        return topic;
+      }
+      throw AuthenticationError;
+    },
+
   },
 };
 

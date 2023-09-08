@@ -12,13 +12,19 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    match: [/.+@.+\..+/, 'Must match an email address!'],
+    match: [/.+@.+\..+/, "Must match an email address!"],
   },
   password: {
     type: String,
     required: true,
     minlength: 5,
   },
+  posts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "ForumTopic",
+    },
+  ],
 });
 
 // set up pre-save middleware to create password

@@ -43,8 +43,8 @@ const typeDefs = `
 
 
     # mutations for Forum
-    addForumTopic(title: String!, content: String!, author: String!): ForumTopic
-    addForumComment(content: String!, author: String!, topic: String!): ForumComment
+    addForumTopic(title: String!, content: String!): ForumTopic
+    addForumComment(content: String!, author: String!, topicId: ID!): ForumComment
     removeForumTopic: ForumTopic
     removeForumComment: ForumComment
   }
