@@ -22,11 +22,29 @@ const resolvers = {
       return { token, user };
     },
 
+    login: async (parent, { email, password }) => {
+      console.log(email, password);
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw AuthenticationError;
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw AuthenticationError;
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+
     addForumTopic: async (parent, { title, content }, context) => {
       if (context.user) {
         const topic = await ForumTopic.create({
           title,
-          content, 
+          content,
           author: context.user.name,
         });
 
@@ -40,24 +58,24 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-  login: async (parent, { email, password }) => {
-    console.log(email, password )
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw AuthenticationError
+    addForumComment: async (parent, { topicId, commentText }, context) => {
+      if (context.user) {
+        return ForumTopic.findOneAndUpdate(
+          { _id: thoughtId },
+          {
+            $addToSet: {
+              comments: { commentText, commentAuthor: context.user.name },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
       }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw AuthenticationError
-      }
-
-      const token = signToken(user);
-      return { token, user };
-    }
-}
+      throw AuthenticationError;
+    },
+  },
 };
 
 module.exports = resolvers;

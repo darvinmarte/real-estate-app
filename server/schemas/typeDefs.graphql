@@ -18,14 +18,15 @@ const typeDefs = `
     content: String!
     author: String!
     createdAt: String!
+    comments: [ForumComment]!
   }
 
-  # type ForumComment {
-  #   _id: ID!
-  #   content: String!
-  #   author: User!
-  #   topic: ForumTopic!
-  # }
+  type ForumComment {
+    _id: ID!
+    commentText: String
+    commentAuthor: String
+    createdAt: String
+  }
 
   type Query {
     #queries for User
@@ -34,7 +35,6 @@ const typeDefs = `
     # queries for Forum
     getAllForumTopics: [ForumTopic]!
     getOneForumTopic(topicId: ID!): ForumTopic
-    # getForumComments(topicId: ID!): ForumComment
   }
 
   type Mutation {
@@ -43,12 +43,11 @@ const typeDefs = `
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-
     # mutations for Forum
     addForumTopic(title: String!, content: String!): ForumTopic
-    # addForumComment(content: String!, author: String!, topicId: ID!): ForumComment
-    removeForumTopic: ForumTopic
-    # removeForumComment: ForumComment
+    addForumComment(topicId: ID!, commentText: String!): ForumTopic
+    removeForumTopic(topicId: ID!): ForumTopic
+    removeForumComment(topicId: ID!, commentId: ID!): ForumTopic
   }
 `;
 
