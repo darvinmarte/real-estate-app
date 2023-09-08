@@ -33,7 +33,7 @@ export const ADD_TOPIC = gql`
       _id
       title
       content
-      author
+      authorName
       createdAt
     }
   }
@@ -50,7 +50,7 @@ mutation {
 
 export const ADD_LISTING_COMMENT = gql`
 mutation AddListingComment($zId: ID!, $comment: String!, $authorName: String!) {
-  addListingComment(zID: $zId, comment: $comment, author: $author) {
+  addListingComment(zID: $zID, comment: $comment, author: $author) {
     zID
     comment
     authorName
