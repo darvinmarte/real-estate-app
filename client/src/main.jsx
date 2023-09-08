@@ -12,6 +12,7 @@ import { ThemeProvider, createTheme} from '@mui/material'
 
 import ErrorPage from './pages/ErrorPage';
 
+import SignOut from './components/SignOut/Signout.jsx';
 
 const theme = createTheme({
   palette:{
@@ -45,10 +46,6 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <SignUp />
       },
-      {
-        path: '/listings/:zID',
-        element: <SingleListing />
-      },
     ]
   },
 ]);
@@ -56,5 +53,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>
   <RouterProvider router={router} />
-  </ThemeProvider>
+   </ThemeProvider> 
 )
