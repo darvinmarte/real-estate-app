@@ -7,6 +7,6 @@
  }
 
 .navbar-fill {
-    background-color: var(--light);
+    /* background-color: var(--light); */
     color: var(--dark)
 }
