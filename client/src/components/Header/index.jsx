@@ -9,9 +9,9 @@ import SignOut from '../SignOut'
 
 const Header = () => {
   return (
-    <Navbar>
+    <Navbar className="navbar-fill">
       <Container className="container text-center">
-        <Navbar.Brand>PropertyPulse</Navbar.Brand>
+        <Navbar.Brand href="/">PropertyPulse</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="navbar">

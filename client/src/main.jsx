@@ -44,10 +44,10 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <SignUp />
       },
-      {
-        path: '/signout',
-        element: <SignOut />
-      },
+      // {
+      //   path: '/profile',
+      //   element: <Profile />
+      // }
     ]
   },
 ]);
@@ -55,5 +55,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>
   <RouterProvider router={router} />
-  </ThemeProvider>
+   </ThemeProvider> 
 )
