@@ -19,10 +19,10 @@ const Home = () => {
 
   return (
     <main>
-      <div className="justify-center">
+      {/* <div className="justify-center"> */}
         <img src={images[currentIndex]} alt={`Image ${currentIndex + 1}`} className ="hero-image"/>
         <div className="text">{texts[currentIndex]}</div>
-      </div>
+      {/* </div> */}
     </main>
   );
 };
