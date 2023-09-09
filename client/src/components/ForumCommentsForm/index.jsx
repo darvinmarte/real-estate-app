@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_FORUM_COMMENT } from '../../utils/mutations';
 
+import { Card, TextField, Button, CardContent, CardActions, Box, CardHeader, Stack } from "@mui/material";
+
 import Auth from '../../utils/auth';
 
 const ForumCommentsForm = ({ topicId }) => {
@@ -39,31 +41,46 @@ const ForumCommentsForm = ({ topicId }) => {
 
   return (
     <div>
-      <h4>Please enter your comment on this topic below!</h4>
 
       {Auth.loggedIn() ? (
         <>
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9">
-              <textarea
-                name="commentText"
-                placeholder="Add your comment..."
-                value={commentText}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
+          <Box
+            component="form"
+            autoComplete="off"
+            onSubmit={handleFormSubmit}>
 
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Comment
-              </button>
-            </div>
-          </form>
+            <Card variant="outlined">
+              <CardHeader
+                title="Add your comment below:"
+              />
+
+              <CardContent>
+                <Stack spacing={2}>
+                  <TextField
+                    label="Your Comment"
+                    variant="outlined"
+                    name="commentText"
+                    style={{ width: '75%' }}
+                    value={commentText}
+                    onChange={handleChange}
+                  />
+                </Stack>
+              </CardContent>
+
+              <CardActions>
+                <Button variant="contained" type="submit">
+                  Add comment
+                </Button>
+              </CardActions>
+
+              {error && (
+                <div className="col-12 my-3 bg-danger text-white p-3">
+                  {error.message}
+                </div>
+              )}
+
+            </Card >
+          </Box>
         </>
       ) : (
         <p>

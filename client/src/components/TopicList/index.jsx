@@ -17,7 +17,8 @@ const TopicList = ({ topics }) => {
       </Typography>
 
       <Stack spacing={3}>
-        {topics.map((topic) => (
+        {topics &&
+        topics.map((topic) => (
           <Card key={topic._id} variant="outlined">
 
             <CardHeader
