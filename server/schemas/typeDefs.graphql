@@ -1,9 +1,11 @@
+
 const typeDefs = `
   type User {
     _id: ID!
     name: String!
     email: String!
     password: String!
+    posts: [ForumTopic]!
   }
 
   type Auth {
@@ -15,16 +17,25 @@ const typeDefs = `
     _id: ID!
     title: String!
     content: String!
-    author: User!
+    author: String!
     createdAt: String!
+    comments: [ForumComment]!
   }
 
   type ForumComment {
     _id: ID!
-    content: String!
-    author: User!
-    topic: ForumTopic!
+    commentText: String!
+    commentAuthor: String!
+    createdAt: String
   }
+
+  type ListingComment {
+    zID: String!
+    comment: String!
+    authorName: String!
+    dateCreated: String
+    }
+
 
   type Query {
     #queries for User
@@ -34,6 +45,9 @@ const typeDefs = `
     getAllForumTopics: [ForumTopic]!
     getOneForumTopic(topicId: ID!): ForumTopic
     getForumComments(topicId: ID!): ForumComment
+
+    #queries for ListingComments
+    listingComments(zID: ID!):[ListingComment]
   }
 
   type Mutation {
@@ -42,12 +56,14 @@ const typeDefs = `
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-
     # mutations for Forum
     addForumTopic(title: String!, content: String!): ForumTopic
-    addForumComment(content: String!, author: String!, topicId: ID!): ForumComment
-    removeForumTopic: ForumTopic
-    removeForumComment: ForumComment
+    addForumComment(topicId: ID!, commentText: String!): ForumTopic
+    removeForumTopic(topicId: ID!): ForumTopic
+    removeForumComment(topicId: ID!, commentId: ID!): ForumTopic
+
+    #mutation for ListingComments
+    addListingComment(zID:ID!, comment: String!, authorName: String!): ListingComment
   }
 `;
 

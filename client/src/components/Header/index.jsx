@@ -16,7 +16,7 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="navbar">
             <Nav.Link href="/listings">Listings</Nav.Link>
-            <Nav.Link href="/forum">Forum</Nav.Link>
+            <Nav.Link href="/forum">PropertyTalks</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/signup">Signup</Nav.Link>
             {/* <Nav.Link href="/signout"><button onClick={SignOut}>Sign Out</button></Nav.Link> */}

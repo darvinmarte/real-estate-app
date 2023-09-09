@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import "./pages.css"
 
 //images provided from unsplash.com
-const images = ['../public/images/daniel-barnes-RKdLlTyjm5g-unsplash.jpg', '../public/images/fernando-alvarez-rodriguez-M7GddPqJowg-unsplash.jpg', '../public/images/john-fornander-Id7u0EkTjBE-unsplash.jpg']
+const images = ['./src/assets/images/photo1.jpg', './src/assets/images/photo2.jpg', './src/assets/images/photo3.jpg']
 const texts = ['Photo by Daniel Barnes', 'Photo by Fernando Alvarez Rodriguez', 'Photo by John Fornander']
 
 const Home = () => {
