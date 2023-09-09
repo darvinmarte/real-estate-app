@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Listings from './pages/Listings.jsx';
 import SingleListing from './pages/SingleListing.jsx';
+import Forum from './pages/Forum.jsx';
 
 import { ThemeProvider, createTheme} from '@mui/material'
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: '/listings/:zID',
         element: <SingleListing />
+      },
+      {
+        path: '/forum',
+        element: <Forum />
       },
     ]
   },
