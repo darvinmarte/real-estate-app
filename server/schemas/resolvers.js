@@ -65,7 +65,7 @@ const resolvers = {
     addForumComment: async (parent, { topicId, commentText }, context) => {
       if (context.user) {
         return ForumTopic.findOneAndUpdate(
-          { _id: thoughtId },
+          { _id: topicId },
           {
             $addToSet: {
               comments: { commentText, commentAuthor: context.user.name },

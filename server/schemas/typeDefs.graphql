@@ -44,7 +44,7 @@ const typeDefs = `
     # queries for Forum
     getAllForumTopics: [ForumTopic]!
     getOneForumTopic(topicId: ID!): ForumTopic
-    getForumComments(topicId: ID!): ForumComment
+    # getForumComments(topicId: ID!): ForumComment
 
     #queries for ListingComments
     listingComments(zID: ID!):[ListingComment]
