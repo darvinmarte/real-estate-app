@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import {searchbyID} from '../utils/API';
 import { useState,useEffect } from 'react';
 import { Card, CardMedia, CardContent, Typography, Button, CardActionArea, CardActions  } from "@mui/material";
+import CommentList from '../components/CommentList'
+import CommentForm from '../components/CommentForm'
 // zID is the id of the listing 
 
 const SingleListing = () =>{
@@ -52,6 +54,7 @@ const SingleListing = () =>{
 
     //div for comments
     return( 
+        <>
         <Card >
             <CardActionArea>
                 <CardMedia
@@ -81,6 +84,11 @@ const SingleListing = () =>{
             </CardActions>
 
         </Card>
+
+        <CommentList zID={zID} />
+
+        <CommentForm />
+        </>
     )
 
 }

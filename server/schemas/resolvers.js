@@ -1,5 +1,5 @@
 const { useForkRef } = require("@mui/material");
-const { User, ForumTopic, ForumComment } = require("../models");
+const { User, ForumTopic, ForumComment, ListingComment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -14,6 +14,10 @@ const resolvers = {
     getOneForumTopic: async (parent, { topicId }) => {
       return ForumTopic.findOne({ _id: topicId });
     },
+    // ListingComment query resolvers
+    listingComments: async(_, { zID }, context)=> {
+      return ListingComment.find({ zID: zID})
+    }
   },
   Mutation: {
     addProfile: async (parent, { name, email, password }) => {
@@ -74,6 +78,14 @@ const resolvers = {
         );
       }
       throw AuthenticationError;
+    },
+
+    addListingComment: async(_, args, context) => {
+    if (context.user){
+      const listingComment = await ListingComment.create(args)
+      return listingComment
+    }
+    throw AuthenticationError
     },
   },
 };
