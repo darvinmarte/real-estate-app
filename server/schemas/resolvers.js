@@ -1,5 +1,5 @@
 const { useForkRef } = require("@mui/material");
-const { User, ForumTopic, ForumComment, ListingComment } = require("../models");
+const { User, ForumTopic, ListingComment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {

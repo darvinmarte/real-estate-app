@@ -50,7 +50,7 @@ mutation {
 
 export const ADD_LISTING_COMMENT = gql`
 mutation AddListingComment($zId: ID!, $comment: String!, $authorName: String!) {
-  addListingComment(zID: $zID, comment: $comment, author: $author) {
+  addListingComment(zID: $zID, comment: $comment, authorName: $author) {
     zID
     comment
     authorName

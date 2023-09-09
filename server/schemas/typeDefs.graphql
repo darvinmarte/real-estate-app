@@ -24,8 +24,8 @@ const typeDefs = `
 
   type ForumComment {
     _id: ID!
-    commentText: String
-    commentAuthor: String
+    commentText: String!
+    commentAuthor: String!
     createdAt: String
   }
 
