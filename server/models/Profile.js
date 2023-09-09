@@ -18,7 +18,13 @@ const profileSchema = new Schema({
         type: String,
         required: true,
         minlength: 5,
-    }
+    },
+    post: [
+        {
+            type: String,
+            trim: true,
+        },
+    ],
 });
 
 
@@ -36,6 +42,6 @@ profileSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
-const User = model('Profile', profileSchema);
+const User = model('User', profileSchema);
 
 module.exports = User;

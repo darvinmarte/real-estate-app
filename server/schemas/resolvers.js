@@ -31,6 +31,29 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    addSPost: async (parent, { profileId, post }) => {
+      return User.findOneAndUpdate(
+        { _id: profileId },
+        {
+          $addToSet: { posts: post },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+    },
+    removeProfile: async (parent, { profileId }) => {
+      return User.findOneAndDelete({ _id: profileId });
+    },
+    removePost: async (parent, { profileId, post }) => {
+      return User.findOneAndUpdate(
+        { _id: profileId },
+        { $pull: { posts: post } },
+        { new: true }
+      );
+    },
+  },
 
     login: async (parent, { email, password }) => {
       console.log(email, password);
