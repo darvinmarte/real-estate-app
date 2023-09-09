@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const TopicList = ({ topics }) => {
   if (!topics.length) {
@@ -27,12 +27,12 @@ const TopicList = ({ topics }) => {
             <div className="card-body bg-light p-2">
               <p>{topic.content}</p>
             </div>
-            {/* <Link
+            <Link
               className="btn btn-primary btn-block btn-squared"
               to={`/forum/${topic._id}`}
             >
               Join the discussion on this topic.
-            </Link> */}
+            </Link>
           </div>
         ))  }  
     </div>

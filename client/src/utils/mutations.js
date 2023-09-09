@@ -43,8 +43,8 @@ export const ADD_TOPIC = gql`
 `;
 
 export const ADD_FORUM_COMMENT = gql`
-  mutation addComment($topicId: ID!, $commentText: String!) {
-    addComment(topicId: $topicId, commentText: $commentText) {
+  mutation addForumComment($topicId: ID!, $commentText: String!) {
+    addForumComment(topicId: $topicId, commentText: $commentText) {
       _id
       title
       content
