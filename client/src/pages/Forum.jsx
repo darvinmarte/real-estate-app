@@ -1,23 +1,28 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_TOPICS } from '../utils/queries';
 
+import { Container, Accordion, AccordionSummary, AccordionDetails, Button } from "@mui/material";
+
 import TopicList from '../components/TopicList';
 import TopicForm from '../components/TopicForm';
 
 const Forum = () => {
     const { loading, data } = useQuery(QUERY_TOPICS);
     const topics = data?.getAllForumTopics || [];
-   console.log(topics);
+    console.log(topics);
     return (
         <main>
-            <div className="flex-row justify-center">
-                <div
-                    className="col-12 col-md-10 mb-3 p-3"
-                    style={{ border: '1px dotted #1a1a1a' }}
-                >
-                    <TopicForm />
-                </div>
-                <div className="col-12 col-md-8 mb-3">
+            <Container maxWidth="lg">
+                <Accordion>
+                    <AccordionSummary>
+                        <Button variant="contained">Click here to add new topic</Button>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <TopicForm />
+                    </AccordionDetails>
+                </Accordion>
+
+                <div>
                     {loading ? (
                         <div>Loading...</div>
                     ) : (
@@ -26,11 +31,9 @@ const Forum = () => {
                         />
                     )}
                 </div>
-            </div>
+            </Container>
         </main>
     );
 };
-
-
 
 export default Forum;

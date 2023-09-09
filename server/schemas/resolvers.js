@@ -8,7 +8,7 @@ const resolvers = {
 
     //Forum query resolvers
     getAllForumTopics: async () => {
-      return ForumTopic.find();
+      return ForumTopic.find().sort({ createdAt: -1 });
     },
 
     getOneForumTopic: async (parent, { topicId }) => {

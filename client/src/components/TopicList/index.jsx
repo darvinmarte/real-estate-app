@@ -1,40 +1,56 @@
 import { Link } from 'react-router-dom';
 
+import { Card, Button, CardContent, CardActions, Box, CardHeader, Stack, Typography } from "@mui/material";
+
 const TopicList = ({ topics }) => {
   if (!topics.length) {
-    return <h3>No topics Were published yet!</h3>;
+    return <Typography variant="h4" gutterBottom>
+      Nothing was published yet!
+    </Typography>;
   }
 
   return (
     <div>
-        <h3>Here are latest topics:</h3>
-        {topics.map((topic) => (
-          <div key={topic._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
-              <span style={{ fontSize: '2rem' }}>
-                Title: {topic.title}
-              </span>
-              <br />
-              <span style={{ fontSize: '1rem' }}>
-                Published by {topic.author}
-              </span>
-              <br />
-              <span style={{ fontSize: '1rem' }}>
-                Published on {topic.createdAt}
-              </span>
-            </h4>
+      <Typography variant="h4" gutterBottom>
+        Here are latest topics:
+      </Typography>
 
-            <div className="card-body bg-light p-2">
-              <p>{topic.content}</p>
-            </div>
-            <Link
-              className="btn btn-primary btn-block btn-squared"
-              to={`/forum/${topic._id}`}
+      <Stack spacing={3}>
+        {topics.map((topic) => (
+          <Card key={topic._id} variant="outlined">
+
+            <CardHeader
+              title={topic.title}
+              subheader={topic.createdAt}
             >
-              Join the discussion on this topic.
-            </Link>
-          </div>
-        ))  }  
+            </CardHeader>
+
+            <CardContent>
+
+              <Typography variant="paragraph">
+                {topic.content}
+              </Typography>
+
+              <Typography color="text.secondary" gutterBottom>
+                Published by {topic.author}
+              </Typography>
+
+            </CardContent>
+
+            <CardActions>
+              <Button variant="outlined">
+                <Link
+                  to={`/forum/${topic._id}`}
+                  style={{ textDecoration: 'None', color: "black" }}
+                >
+                  Join the discussion on this topic.
+                </Link>
+              </Button>
+
+            </CardActions>
+          </Card>
+        ))}
+      </Stack>
     </div>
   );
 };

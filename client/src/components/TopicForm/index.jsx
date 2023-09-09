@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
+import { Card, TextField, Button, CardContent, CardActions, Box, CardHeader, Stack } from "@mui/material";
+
 import { ADD_TOPIC } from '../../utils/mutations';
 import { QUERY_TOPICS } from '../../utils/queries';
 
@@ -11,7 +13,7 @@ const TopicForm = () => {
   const [topicContent, setTopicContent] = useState('');
   const [topicTitle, setTopicTitle] = useState('');
 
-  const [addForumTopic, { error }] = useMutation (ADD_TOPIC, 
+  const [addForumTopic, { error }] = useMutation(ADD_TOPIC,
     {
       refetchQueries: [
         QUERY_TOPICS,
@@ -27,7 +29,7 @@ const TopicForm = () => {
       const { data } = await addForumTopic({
         variables: {
           title: topicTitle,
-          content: topicContent, 
+          content: topicContent,
           author: Auth.getProfile().data.name,
         },
       });
@@ -42,57 +44,68 @@ const TopicForm = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-   
+
     if (name === 'topicContent') {
       setTopicContent(value);
     } else if (name === 'topicTitle') {
       setTopicTitle(value);
-    } 
+    }
   };
 
   return (
     <div>
-      <h3>Write your topic here:</h3>
-
       {Auth.loggedIn() ? (
         <>
-          <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9">
-              <textarea
-                name="topicTitle"
-                placeholder="New topic title..."
-                value={topicTitle}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
 
-              <textarea
-                name="topicContent"
-                placeholder="New topic content..."
-                value={topicContent}
-                className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
+          <Box
+            component="form"
+            autoComplete="off"
+            onSubmit={handleFormSubmit}>
 
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Publish New Topic
-              </button>
-            </div>
+            <Card variant="outlined">
+              <CardHeader 
+              title="Fill in below fields to start new conversation:"
+              />
 
-            {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
-              </div>
-            )}
+              <CardContent>
+                <Stack spacing={2}>
+                <TextField
+                  label="New Topic Title"
+                  variant="outlined"
+                  name="topicTitle"
+                  style={{ width: '75%' }}
+                  value={topicTitle}
+                  onChange={handleChange}
+                />
 
-          </form>
+                <TextField
+                  label="New Topic Content"
+                  id="outlined-multiline-flexible"
+                  multiline
+                  maxRows={4}
+                  variant="outlined"
+                  name="topicContent"
+                  style={{ width: '75%' }}
+                  value={topicContent}
+                  onChange={handleChange}
+                />
+                </Stack>
+              </CardContent>
+
+              <CardActions>
+                <Button variant="contained" type="submit">
+                  Publish New Topic
+                </Button>
+              </CardActions>
+
+              {error && (
+                <div className="col-12 my-3 bg-danger text-white p-3">
+                  {error.message}
+                </div>
+              )}
+
+            </Card >
+          </Box>
         </>
       ) : (
         <p>
