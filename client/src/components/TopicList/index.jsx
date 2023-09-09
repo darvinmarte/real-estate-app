@@ -11,8 +11,9 @@ const TopicList = ({ topics }) => {
 
   return (
     <div>
+
       <Typography variant="h4" gutterBottom>
-        Here are latest topics:
+        Here are the latest topics:
       </Typography>
 
       <Stack spacing={3}>
@@ -24,7 +25,7 @@ const TopicList = ({ topics }) => {
               subheader={topic.createdAt}
             >
             </CardHeader>
-
+            
             <CardContent>
 
               <Typography variant="paragraph">
@@ -43,7 +44,7 @@ const TopicList = ({ topics }) => {
                   to={`/forum/${topic._id}`}
                   style={{ textDecoration: 'None', color: "black" }}
                 >
-                  Join the discussion on this topic.
+                  Join the discussion on this topic
                 </Link>
               </Button>
 
