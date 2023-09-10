@@ -47,9 +47,10 @@ const ForumCommentsForm = ({ topicId }) => {
           <Box
             component="form"
             autoComplete="off"
-            onSubmit={handleFormSubmit}>
+            onSubmit={handleFormSubmit}
+            >
 
-            <Card variant="outlined">
+            <Card variant="outlined" style={{ marginBottom: "5rem" }}>
               <CardHeader
                 title="Add your comment below:"
               />
