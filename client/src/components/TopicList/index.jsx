@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { Card, Button, CardContent, CardActions, Box, CardHeader, Stack, Typography } from "@mui/material";
+import { Card, Button, CardContent, CardActions, Box, CardHeader, Stack, Typography, Grid, Container } from "@mui/material";
 
 const TopicList = ({ topics }) => {
   if (!topics.length) {
@@ -10,50 +10,53 @@ const TopicList = ({ topics }) => {
   }
 
   return (
-    <div>
+    <>
 
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4">
         Here are the latest topics:
       </Typography>
 
-      <Stack spacing={3}>
-        {topics &&
+
+      {topics &&
         topics.map((topic) => (
-          <Card key={topic._id} variant="outlined">
+          <Card key={topic._id} variant="outlined" style={{ backgroundColor: "#88989993", marginTop: "2rem" }}>
 
             <CardHeader
               title={topic.title}
-              subheader={topic.createdAt}
+              subheader={topic.author}
             >
             </CardHeader>
-            
+
             <CardContent>
+
 
               <Typography variant="paragraph">
                 {topic.content}
               </Typography>
 
-              <Typography color="text.secondary" gutterBottom>
-                Published by {topic.author}
-              </Typography>
-
             </CardContent>
 
             <CardActions>
-              <Button variant="outlined">
-                <Link
-                  to={`/forum/${topic._id}`}
-                  style={{ textDecoration: 'None', color: "black" }}
-                >
-                  Join the discussion on this topic
-                </Link>
-              </Button>
+              <Grid container justifyContent="space-between">
+                <Typography color="text.secondary" gutterBottom>
+                  Published on {topic.createdAt}
+                </Typography>
+
+                <Button variant="outlined">
+                  <Link
+                    to={`/forum/${topic._id}`}
+                    style={{ textDecoration: 'None', color: "black" }}
+                  >
+                    Join the discussion on this topic
+                  </Link>
+                </Button>
+              </Grid>
 
             </CardActions>
           </Card>
         ))}
-      </Stack>
-    </div>
+    </>
+
   );
 };
 
