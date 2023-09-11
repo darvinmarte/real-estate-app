@@ -9,7 +9,7 @@ const ListingCard =({listings}) =>{
 
 
 
-if(listings == undefined){
+if(!listings){
     return (
         <div>
             LOADING DATA....
