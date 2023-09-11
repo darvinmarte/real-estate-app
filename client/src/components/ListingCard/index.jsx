@@ -1,8 +1,8 @@
-import { Grid, Card, CardActions, CardMedia, CardActionArea, Typography,CardContent, Button
+import { Grid, Card, Stack, CardMedia, CardActionArea, Typography,CardContent, Button, Container
  } from "@mui/material";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
-
+import './index.css'
 const ListingCard =({listings}) =>{
 
     const [page, setPage] = useState(1);
@@ -35,10 +35,11 @@ if(listings == undefined){
 
     return (
         <div>
-        <Grid spacing ={2} direction="row">
+           
+        <Grid container spacing={3} >
 
             {cardsToShow.map((listing) => (
-            <Grid item key={listing.zpid}>
+            <Grid item key={listing.zpid} className="post" md={4}>
                 <Link  to={`/listings/${listing.zpid}`}>
                 <Card>
                 <CardActionArea>
@@ -48,10 +49,10 @@ if(listings == undefined){
                     />
                     <CardContent>
                     <div>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                             {listing.streetAddress}
                         </Typography>
-                        <Typography gutterBottom variant="h4" component="div">
+                        <Typography gutterBottom variant="h5" component="div">
                             $ {listing.price.toLocaleString('en-US')} 
                         </Typography>
                     </div>
@@ -65,14 +66,14 @@ if(listings == undefined){
             </Link>
             </Grid>))}
         </Grid>
-            <div>
-                <Button onClick={handlePrevPage} disabled={page === 1}>
+            <Stack direction="row" spacing={2}>
+                <Button variant="contained" onClick={handlePrevPage} disabled={page === 1}>
                     Previous Page
                 </Button>
-                <Button onClick={handleNextPage} disabled={endIndex >= listings.results.length}>
+                <Button variant="contained" onClick={handleNextPage} disabled={endIndex >= listings.results.length}>
                     Next Page
                 </Button>
-            </div>  
+            </Stack> 
 
 
         </div>
