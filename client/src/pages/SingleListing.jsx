@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
-import {searchbyID} from '../utils/API';
-import { useState,useEffect } from 'react';
-import { Card, CardMedia, CardContent, Typography, Button, CardActionArea, CardActions  } from "@mui/material";
+import { searchbyID } from '../utils/API';
+import { useState, useEffect } from 'react';
+import { Card, CardMedia, CardContent, Typography, Button, CardActionArea, CardActions, Grid, Container,Stack,Box } from "@mui/material";
 import CommentList from '../components/CommentList'
 import CommentForm from '../components/CommentForm'
 // zID is the id of the listing 
-
-const SingleListing = () =>{
+import "./pages.css"
+const SingleListing = () => {
     const { zID } = useParams();
     const [data, setData] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -16,6 +16,7 @@ const SingleListing = () =>{
             try {
                 const result = await searchbyID(zID);
                 setData(result);
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -37,61 +38,76 @@ const SingleListing = () =>{
         }
     };
 
-    if(!data){
-    console.log('No Data');
-    return (
-        <div>
-            Loading..
-        </div>
-    )
-}else{
-    console.log(data.big);
+    if (!data) {
+        console.log('No Data');
+        return (
+            <div>
+                Loading..
+            </div>
+        )
+    } else {
+        console.log(data);
         const currentImage = data.big[currentImageIndex].url;
-        
-    //card to display
-    //images
-    //description
 
-    //div for comments
-    return( 
-        <>
-        <Card >
-            <CardActionArea>
-                <CardMedia
-                    component="img"
-                    height="400"
-                    image={currentImage}
-                // alt="green iguana"
-                />
+        //card to display
+        //images
+        //description
 
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        Lizard
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button onClick={handlePrevImage} disabled={currentImageIndex === 0}>
-                    Previous Image
-                </Button>
-                <Button onClick={handleNextImage} disabled={currentImageIndex === data.big.length - 1}>
-                    Next Image
-                </Button>
-            </CardActions>
+        //div for comments
+        return (
+            <>
+                <Container >
+                    <Grid container spacing={2}>
+                        <Grid item lg={6} >
+                            
+                        <Box>
+                            <img src={currentImage} />
+                        </Box>
 
-        </Card>
+                            <Stack direction="row" spacing={2}>
+                                <Button onClick={handlePrevImage} disabled={currentImageIndex === 0}>
+                                    Previous Image
+                                </Button>
+                                <Button onClick={handleNextImage} disabled={currentImageIndex === data.big.length - 1}>
+                                    Next Image
+                                </Button>
+                            </Stack>
+                        </Grid>
+                    <Grid item lg={6}>
 
-        <CommentList zID={zID} />
 
-        <CommentForm />
-        </>
-    )
+                        <Container >
+                            <Typography gutterBottom variant="h5" component="div">
+                                Price: ${data.price.toLocaleString()}
+                            </Typography>
+                            <Typography gutterBottom variant="h6" component="div">
+                                Address: {data.address.streetAddress} , {data.address.city}, {data.address.state} {data.address.zipcode}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                Number of bedrooms: {data.bedrooms}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                Number of bathrooms: {data.bathrooms}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary" >
+                                {data.description}
+                            </Typography>
+                        </Container>
+                    </Grid>
 
-}
+                    </Grid>
+            
+                
+
+                </Container>
+                
+                <CommentList zID={zID} />
+
+                <CommentForm />
+            </>
+        )
+
+    }
 
 }
 

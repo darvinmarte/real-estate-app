@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-export const searchCity = async (query) =>  {
+export const searchCity = async (query, filter) =>  {
 
 
     //Zillow 
@@ -9,7 +9,8 @@ export const searchCity = async (query) =>  {
         method: 'GET',
         url: 'https://zillow56.p.rapidapi.com/search',
         params: {
-            location: query
+            location: query,
+            status : filter
         },
         headers: {
             'X-RapidAPI-Key': '5932463005msha3ed8e2f210665ep1e2f5cjsne6bc7cc14e2c',

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {searchCity} from "../utils/API";
 
-import {Button, Container, TextField} from '@mui/material';
+import { Button, Container, TextField, Stack, FormGroup, FormControlLabel , Switch} from '@mui/material';
 import ListingCard from "../components/ListingCard";
 // import { Container, TextField, Card, CardActions, CardMedia, CardActionArea, Typography,CardContent
 //  } from "@mui/material";
@@ -12,11 +12,13 @@ const Listings = () => {
     // const [listings, setListings] = useState({});
     const { listings, updateListings } = useListings();
     const [searchQuery, setSearchQuery] = useState('');
-
+    const [filter,setFilter] = useState(false);
+    document.querySelector('#filter')
+    let sendFilter;
     const handleFetchListings = async (searchThis) => {
         try {
 
-            const data = await searchCity(searchThis);
+            const data = await searchCity(searchThis,sendFilter);
             updateListings(data);
             console.log(data);
 
@@ -26,18 +28,29 @@ const Listings = () => {
         }
     };
 
+    const handleChange = (e) =>{
+        setFilter(e.target.checked);
+        e.target.checked ? sendFilter = 'forRent' : sendFilter = 'forSale'; 
+        console.log(sendFilter)
+    }
+
+
     return (
         <main>
             
-                <div>
-                <TextField fullWidth label="Search Location" id="fullWidth" type="text"
+            <Container>
+                <FormGroup>
+                    <FormControlLabel  control={<Switch />} label="For Rent" checked={filter} name="rent" onChange={handleChange} id="filter"/>
+                   
+                    <TextField fullWidth label="Search Location" id="fullWidth" type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)} />
-                    <Button variant = "contained" onClick={() => handleFetchListings(searchQuery)}>Search</Button>
-                </div>
+                </FormGroup>
+                <Button variant = "contained" onClick={() => handleFetchListings(searchQuery)}>Search</Button>
+            </Container>
 
 
-            <Container maxWidth="sm">
+            <Container>
                
                 <ListingCard listings= {listings} ></ListingCard>
                
