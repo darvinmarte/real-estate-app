@@ -23,7 +23,14 @@ const resolvers = {
     // ListingComment query resolvers
     listingComments: async(_, { zID }, context)=> {
       return ListingComment.find({ zID: zID})
-    }
+    },
+    
+    me: async (parent, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('thoughts');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
   },
   Mutation: {
     addProfile: async (parent, { name, email, password }) => {
@@ -31,29 +38,10 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addSPost: async (parent, { profileId, post }) => {
-      return User.findOneAndUpdate(
-        { _id: profileId },
-        {
-          $addToSet: { posts: post },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
     removeProfile: async (parent, { profileId }) => {
       return User.findOneAndDelete({ _id: profileId });
     },
-    removePost: async (parent, { profileId, post }) => {
-      return User.findOneAndUpdate(
-        { _id: profileId },
-        { $pull: { posts: post } },
-        { new: true }
-      );
-    },
-  },
+    // only if user is logged in be able to delte 
 
     login: async (parent, { email, password }) => {
       console.log(email, password);
