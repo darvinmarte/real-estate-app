@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {searchCity} from "../utils/API";
 
 import { Button, Container, TextField, Stack, FormGroup, FormControlLabel , Switch} from '@mui/material';
@@ -9,12 +9,16 @@ import ListingCard from "../components/ListingCard";
 import { useListings } from "../utils/ListingsContext";
 
 const Listings = () => {
-    // const [listings, setListings] = useState({});
     const { listings, updateListings } = useListings();
     const [searchQuery, setSearchQuery] = useState('');
     const [filter,setFilter] = useState(false);
-    document.querySelector('#filter')
-    let sendFilter;
+
+    let sendFilter
+    useEffect(()=>{
+        filter ? sendFilter = 'forRent' : sendFilter = 'forSale'
+    
+    },[filter])
+
     const handleFetchListings = async (searchThis) => {
         try {
 
@@ -22,6 +26,7 @@ const Listings = () => {
             updateListings(data);
             console.log(data);
 
+       
 
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -30,8 +35,6 @@ const Listings = () => {
 
     const handleChange = (e) =>{
         setFilter(e.target.checked);
-        e.target.checked ? sendFilter = 'forRent' : sendFilter = 'forSale'; 
-        console.log(sendFilter)
     }
 
 
