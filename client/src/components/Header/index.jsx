@@ -18,8 +18,6 @@ const Header = () => {
             <Nav.Link href="/listings">Listings</Nav.Link>
             <Nav.Link href="/forum">PropertyTalks</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/signup">Signup</Nav.Link>
-            {/* <Nav.Link href="/signout"><button onClick={SignOut}>Sign Out</button></Nav.Link> */}
             
           </Nav>
         </Navbar.Collapse>

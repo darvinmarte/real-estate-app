@@ -76,6 +76,9 @@ const Login = () => {
                                 >
                                     Submit
                                 </button>
+                                <Link to="/signup">
+                                    <button>Sign Up!</button>
+                                </Link>
                             </form>
                         )}
 
