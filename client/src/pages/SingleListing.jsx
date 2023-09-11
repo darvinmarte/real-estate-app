@@ -49,11 +49,7 @@ const SingleListing = () => {
         console.log(data);
         const currentImage = data.big[currentImageIndex].url;
 
-        //card to display
-        //images
-        //description
-
-        //div for comments
+    
         return (
             <>
                 <Container >
@@ -61,7 +57,10 @@ const SingleListing = () => {
                         <Grid item lg={6} >
                             
                         <Box>
-                            <img src={currentImage} />
+                            <CardMedia  
+                            component="img"
+                            image={currentImage}
+                            />
                         </Box>
 
                             <Stack direction="row" spacing={2}>
@@ -100,10 +99,12 @@ const SingleListing = () => {
                 
 
                 </Container>
-                
+                <Container>
+
                 <CommentList zID={zID} />
 
                 <CommentForm />
+                </Container>
             </>
         )
 

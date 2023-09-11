@@ -12,7 +12,7 @@ const ListingCard =({listings}) =>{
 if(!listings){
     return (
         <div>
-            LOADING DATA....
+          
         </div>
     )
 }else{
