@@ -44,3 +44,21 @@ query listingComments($zillowID: String!) {
    }
   }
 }`;
+
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      name
+      email
+      about
+      posts {
+        _id
+        title
+        content
+        author
+        createdAt
+      }
+    }
+  }
+`;

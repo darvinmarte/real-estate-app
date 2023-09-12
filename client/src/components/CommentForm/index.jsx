@@ -31,13 +31,13 @@ export default function CommentForm() {
             });
             setComment('')
 
-        } catch (err) {
-            console.error(JSON.parse(JSON.stringify(err)));
+        } catch (error) {
+           console.error('Error adding comment:', error) 
         }
     }
 
     return (
-        <FormGroup >
+        <form onSubmit={handleSubmit}>
             <TextField 
                 id="outlined-basic"
                 label="Comment"
