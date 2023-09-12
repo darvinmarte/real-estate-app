@@ -1,5 +1,17 @@
 .hero-image {
     width: 100%;
     height: auto;
+    /* position: absolute;
+    z-index: 1; */
     /* marg */
 }
+
+/* .textOver {
+    position: absolute;
+        top: 25%;
+        left: 50%;
+        z-index: 2;
+        background-color: #21686993;
+        color: white;
+        padding: 3%;
+} */
