@@ -1,11 +1,13 @@
 import './footer.css'
+import { Typography } from "@mui/material";
+
 const Footer = () => {
 
   return (
     <footer>
-      <div className="container text-center footer">
-        <h4>&copy; 2023 This is footer</h4>
-      </div>
+      <Typography className="myfooter">
+        <center>&copy; 2023 All Rights Reserved</center>
+      </Typography>
     </footer>
   );
 };
