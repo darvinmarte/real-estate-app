@@ -5,6 +5,7 @@ const typeDefs = `
     name: String!
     email: String!
     password: String!
+    about: String!
     posts: [ForumTopic]!
   }
 
@@ -39,7 +40,7 @@ const typeDefs = `
 
   type Query {
     #queries for User
-
+    me: User
 
     # queries for Forum
     getAllForumTopics: [ForumTopic]!
@@ -48,6 +49,7 @@ const typeDefs = `
 
     #queries for ListingComments
     listingComments(zID: ID!):[ListingComment]
+
   }
 
   type Mutation {

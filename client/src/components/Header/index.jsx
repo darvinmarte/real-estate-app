@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+// import SignOut from '../SignOut'
+
+
 
 import Auth from '../../utils/auth';
+
 
 const Header = () => {
 

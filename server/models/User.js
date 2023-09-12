@@ -19,6 +19,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  // about: {
+  //   type: String,
+  //   trim: true,
+  // },
   posts: [
     {
       type: Schema.Types.ObjectId,
