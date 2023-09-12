@@ -16,7 +16,7 @@ const resolvers = {
     },
     // ListingComment query resolvers
     listingComments: async(_, { zID }, context)=> {
-      return ListingComment.find({ zID: zID})
+      return ListingComment.find({ zillowID: zID})
     }
   },
   Mutation: {
@@ -80,10 +80,39 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-    addListingComment: async(_, args, context) => {
-    if (context.user){
-      const listingComment = await ListingComment.create(args)
-      return listingComment
+    //if it doesnt exist create it
+    addListingComment: async(_, {zillowID, comment, authorName}, context) => {
+      if (context.user){
+        // const listingComment = await ListingComment.create(args)
+        // return listingComment
+
+        //find if the id exists in database, 
+        const data = await ListingComment.findOneAndUpdate(
+          {zillowID: zillowID},
+          {
+          //add comment to comment array
+          $addToSet:{
+            comments:{ comment, authorName}
+          }
+        },{
+          new: true,
+          runValidators: true,
+        }
+      )
+      if (!data){
+        const newData = await ListingComment.create({
+          zillowID: zillowID,
+          comments:[{
+            comment,
+            authorName
+          }]
+        })
+        return newData;
+      }else{
+        return data;
+      }
+
+
     }
     throw AuthenticationError
     },

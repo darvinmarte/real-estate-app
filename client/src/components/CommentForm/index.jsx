@@ -2,7 +2,7 @@ import Auth from '../../utils/auth'
 import { useState } from 'react';
 import { useMutation } from '@apollo/client'
 import { useParams } from 'react-router-dom';
-import { TextField, Button } from '@mui/material'
+import { TextField, Button, FormGroup } from '@mui/material'
 import { ADD_LISTING_COMMENT } from '../../utils/mutations';
 
 
@@ -11,34 +11,33 @@ import { ADD_LISTING_COMMENT } from '../../utils/mutations';
 //send muation on a click
 
 
-export default function CommentForm({ onSubmit }) {
+export default function CommentForm() {
 
     const { zID } = useParams();
     const [comment, setComment] = useState('');
     const authorName = Auth.getProfile().data.name;
-    const [addComment] = useMutation(ADD_LISTING_COMMENT)
-
+    const [addListingComment,{error}] = useMutation(ADD_LISTING_COMMENT)
+    // console.log(zID);
+    // console.log(comment)
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await addComment({
+            const { data } = await addListingComment({
                 variables: {
-                    authorName: authorName,
+                    zillowID: zID,
                     comment: comment,
-                    zID: zID,
+                    authorName: authorName,
                 },
             });
-            console.log(addComment)
-            onSubmit()
             setComment('')
 
-        } catch (error) {
-           console.error('Error adding comment:', error) 
+        } catch (err) {
+            console.error(JSON.parse(JSON.stringify(err)));
         }
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <FormGroup >
             <TextField 
                 id="outlined-basic"
                 label="Comment"
@@ -48,15 +47,15 @@ export default function CommentForm({ onSubmit }) {
                 rows={3}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                required="true"
+                required={true}
             />
             <Button
-                type="submit"
                 variant="contained"
                 fullWidth
+                onClick={(e) => handleSubmit(e)}
             >
                 Leave a comment!
             </Button>
-        </form>
+        </FormGroup>
     )
 }

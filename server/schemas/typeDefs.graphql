@@ -30,12 +30,16 @@ const typeDefs = `
   }
 
   type ListingComment {
-    zID: String!
+    _id:ID!
+    zillowID: String!
+    comments: [Comment]
+    }
+  type Comment {
+    _id: ID!
     comment: String!
     authorName: String!
-    dateCreated: String
-    }
-
+    dateCreated: String!
+  }
 
   type Query {
     #queries for User
@@ -47,7 +51,7 @@ const typeDefs = `
     # getForumComments(topicId: ID!): ForumComment
 
     #queries for ListingComments
-    listingComments(zID: ID!):[ListingComment]
+    listingComments(zillowID: String!):[ListingComment]
   }
 
   type Mutation {
@@ -63,7 +67,7 @@ const typeDefs = `
     removeForumComment(topicId: ID!, commentId: ID!): ForumTopic
 
     #mutation for ListingComments
-    addListingComment(zID:ID!, comment: String!, authorName: String!): ListingComment
+    addListingComment(zillowID:String!, comment: String!, authorName: String!): ListingComment
   }
 `;
 

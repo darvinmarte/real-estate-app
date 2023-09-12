@@ -4,9 +4,11 @@ import { useQuery } from "@apollo/client";
 
 export default function CommentList({zID}) {
 
-    const {data, loading, error} = useQuery(QUERY_LISTING_COMMENTS, {variables: { zID: zID }})
+    const {data, loading, error} = useQuery
+        (QUERY_LISTING_COMMENTS, { variables: { zillowID: zID }})
+
     const commentData = data?.listingComments || []
-    console.log(zID)
+
     if (loading) return <div>loading...</div>
     if (error) return <div>error {error.message}</div>
 
