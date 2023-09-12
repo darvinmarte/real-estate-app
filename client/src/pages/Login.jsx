@@ -47,7 +47,7 @@ const Login = () => {
     return (
         <main className="flex-row justify-center mb-4">
             <div className="col-12 col-lg-10">
-                <Typography variant="h3" align="center" >Login</Typography>
+                <Typography variant="h5" align="center" >Login</Typography>
                 <div>
                     {data ? (
                         <p>
@@ -55,7 +55,7 @@ const Login = () => {
                             <Link to="/">back to the homepage.</Link>
                         </p>
                     ) : (
-                        <form onSubmit={handleFormSubmit}>
+                        <form onSubmit={handleFormSubmit} align="center">
                             <TextField
                                 variant="outlined"
                                 fullWidth
@@ -77,14 +77,14 @@ const Login = () => {
                                 onChange={handleChange}
                             />
                             <Button
-                                className="btn btn-block"
+                                variant="contained" 
                                 style={{ cursor: 'pointer' }}
                                 type="submit"
                             >
-                                Submit
+                                Log In!
                             </Button>
                             <Link to="/signup">
-                                <Button variant="contained" fullWidth><Typography variant="h4">Sign Up!</Typography></Button>
+                                <Typography variant="body1"> Sign Up!</Typography>
                             </Link>
                         </form>
                     )}

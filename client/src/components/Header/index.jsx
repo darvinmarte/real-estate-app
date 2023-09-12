@@ -9,7 +9,6 @@ import Container from 'react-bootstrap/Container';
 
 import Auth from '../../utils/auth';
 
-import Auth from '../../utils/auth';
 
 const Header = () => {
 
