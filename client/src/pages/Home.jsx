@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import "./pages.css"
 
-import ImageOne from "../assets/images/photo1.jpg"
+import { Link } from 'react-router-dom';
 
 import { Typography, Container, Card, CardContent, CardMedia, Button, CardActionArea, CardActions, Grid } from "@mui/material";
 
@@ -23,8 +23,8 @@ const Home = () => {
 
   return (
     <main>
-      <Container style={{paddingBottom: "4%"}}>
-        <Typography className="welcomeText" variant="h6" style={{marginTop: "2%"}}>Welcome to PropertyPulse where you find your next home and learn all about it!</Typography>
+      <Container style={{ paddingBottom: "4%" }}>
+        <Typography className="welcomeText" variant="h6" style={{ marginTop: "2%" }}>Welcome to PropertyPulse where you find your next home and learn all about it!</Typography>
         <div className="justify-center homepageContainer">
           <img src={images[currentIndex]} alt={`Image ${currentIndex + 1}`} className="hero-image" />
 
@@ -38,50 +38,51 @@ const Home = () => {
                 <CardMedia
                   component="img"
                   height="140"
-                  image="../src/assets/images/photo1.jpg"
-                  alt="green iguana"
+                  image="../src/assets/images/listingsphoto.jpg"
+                  alt="listings photo"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     Listings
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                    Browse listings below for rent and for sale.
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary">
-                  Share
-                </Button>
+                <Link to="/listings">
+                  <Button size="small" color="primary">
+                    Click here
+                  </Button>
+                </Link>
               </CardActions>
             </Card>
           </Grid>
 
-          <Grid item xs={2} sm={4} md={4}>
+          <Grid item xs={2} sm={4} md={4} style={{margin: "auto"}}>
             <Card sx={{ maxWidth: 345 }}>
               <CardActionArea>
                 <CardMedia
                   component="img"
                   height="140"
-                  image="../src/assets/images/photo2.jpg"
-                  alt="green iguana"
+                  image="../src/assets/images/talksphoto.jpg"
+                  alt="talk photo"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     PropertyTalk
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                    Join conversations about all things real estate.
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary">
-                  Share
-                </Button>
+                <Link to="/forum">
+                  <Button size="small" color="primary">
+                    Click here
+                  </Button> </Link>
               </CardActions>
             </Card>
           </Grid>
@@ -92,23 +93,24 @@ const Home = () => {
                 <CardMedia
                   component="img"
                   height="140"
-                  image="../src/assets/images/photo3.jpg"
-                  alt="green iguana"
+                  image="../src/assets/images/signupphoto.jpg"
+                  alt="signup photo"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     Login / SignUp
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                    Login or SignUp for full experience.
                   </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary">
-                  Share
-                </Button>
+                <Link to="/login">
+                  <Button size="small" color="primary">
+                    Click here
+                  </Button>
+                </Link>
               </CardActions>
             </Card>
           </Grid>
