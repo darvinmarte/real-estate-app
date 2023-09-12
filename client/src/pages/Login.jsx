@@ -61,6 +61,7 @@ const Login = () => {
                                     value={formState.email}
                                     onChange={handleChange}
                                 />
+
                                 <input
                                     className="form-input"
                                     placeholder="Password"
