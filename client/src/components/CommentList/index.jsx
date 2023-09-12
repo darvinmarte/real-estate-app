@@ -2,6 +2,9 @@ import { Container, Typography, Stack, Card, CardHeader, CardContent } from '@mu
 
 export default function CommentList({data}) {
 
+    if (!data.comments) {
+        return <Typography> No comments yet </Typography>
+    }
 
     return(
 
