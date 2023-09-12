@@ -33,6 +33,6 @@ const listingCommentSchema = new Schema({
     });
 
 
-const ListingComment = model("listingComment", listingCommentSchema);
+const ListingComment = model("ListingComment", listingCommentSchema);
 
 module.exports = ListingComment;

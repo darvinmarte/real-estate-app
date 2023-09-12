@@ -13,7 +13,7 @@ const Listings = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filter,setFilter] = useState(false);
 
-    let sendFilter
+    let sendFilter;
     useEffect(()=>{
         filter ? sendFilter = 'forRent' : sendFilter = 'forSale'
     

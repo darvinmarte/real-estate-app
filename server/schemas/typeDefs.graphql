@@ -52,7 +52,7 @@ const typeDefs = `
     # getForumComments(topicId: ID!): ForumComment
 
     #queries for ListingComments
-    listingComments(zillowID: String!):[ListingComment]
+    listingComments(zillowID: String!): ListingComment
   }
 
   type Mutation {

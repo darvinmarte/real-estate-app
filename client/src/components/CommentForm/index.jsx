@@ -2,7 +2,7 @@ import Auth from '../../utils/auth'
 import { useState } from 'react';
 import { useMutation } from '@apollo/client'
 import { useParams } from 'react-router-dom';
-import { TextField, Button, FormGroup } from '@mui/material'
+import { TextField, Button, FormGroup,Box  } from '@mui/material'
 import { ADD_LISTING_COMMENT } from '../../utils/mutations';
 
 
@@ -17,8 +17,6 @@ export default function CommentForm() {
     const [comment, setComment] = useState('');
     const authorName = Auth.getProfile().data.name;
     const [addListingComment,{error}] = useMutation(ADD_LISTING_COMMENT)
-    // console.log(zID);
-    // console.log(comment)
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -29,6 +27,7 @@ export default function CommentForm() {
                     authorName: authorName,
                 },
             });
+            console.log(data);
             setComment('')
 
         } catch (error) {
@@ -37,7 +36,9 @@ export default function CommentForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <Box style={{margin:'10px'}}>
+
+        <FormGroup onSubmit={handleSubmit}>
             <TextField 
                 id="outlined-basic"
                 label="Comment"
@@ -48,14 +49,15 @@ export default function CommentForm() {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 required={true}
-            />
+                />
             <Button
                 variant="contained"
                 fullWidth
                 onClick={(e) => handleSubmit(e)}
-            >
+                >
                 Leave a comment!
             </Button>
         </FormGroup>
+                </Box>
     )
 }
