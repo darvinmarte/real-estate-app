@@ -2,23 +2,29 @@ const { Schema, model } = require("mongoose");
 const dateFormat = require('../utils/dateFormat.js')
 
 const listingCommentSchema = new Schema({
-        zID: {
+    
+        zillowID: {
             type: String,
             required: true
         },
-        comment: {
-            type: String,
-            required: true
-        },
-        authorName: {
-            type: String,
-            required: true,
-        },
-        dateCreated: {
-            type: Date,
-            default: Date.now,
-            get: timestamp => dateFormat(timestamp)
-        }
+        comments:[
+            {  
+
+                comment: {
+                    type: String,
+                    required: true
+                },
+                authorName: {
+                    type: String,
+                    required: true,
+                },
+                dateCreated: {
+                    type: Date,
+                    default: Date.now,
+                    get: timestamp => dateFormat(timestamp)
+                }
+            }
+        ]
     },
     {
         toJSON: {
@@ -27,6 +33,6 @@ const listingCommentSchema = new Schema({
     });
 
 
-const ListingComment = model("listingComment", listingCommentSchema);
+const ListingComment = model("ListingComment", listingCommentSchema);
 
 module.exports = ListingComment;
