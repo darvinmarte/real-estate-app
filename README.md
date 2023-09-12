@@ -16,7 +16,9 @@
 
 ## Installation
 
-- Latest versions of 
+To install necessary dependencies, run the following command:
+
+```npm i```
 
 ## Usage
 
@@ -35,7 +37,7 @@
   GitHub: https://github.com/darvinmarte
 
 - Vlada Caban. 
-  Contact Info: vladacaban@gmail.com
+  Contact Info: veliseeva.ny@gmail.com
   GitHub: https://github.com/vlada-caban
 
 - Aimee Darling. 
