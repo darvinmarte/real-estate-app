@@ -26,15 +26,35 @@ export const ADD_PROFILE = gql`
   }
 `;
 
-
 export const ADD_TOPIC = gql`
   mutation addForumTopic($title: String!, $content: String!) {
     addForumTopic(title: $title, content: $content) {
       _id
       title
       content
-      authorName
+      author
       createdAt
+      comments {
+        _id
+        commentText
+      }
+    }
+  }
+`;
+
+export const ADD_FORUM_COMMENT = gql`
+  mutation addForumComment($topicId: ID!, $commentText: String!) {
+    addForumComment(topicId: $topicId, commentText: $commentText) {
+      _id
+      title
+      content
+      author
+      createdAt
+      comments {
+        _id
+        commentText
+        createdAt
+      }
     }
   }
 `;

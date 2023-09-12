@@ -7,9 +7,18 @@ import Container from 'react-bootstrap/Container';
 
 
 
+import Auth from '../../utils/auth';
+
+import Auth from '../../utils/auth';
+
 const Header = () => {
+
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   return (
-    <Navbar className="navbar-fill">
+    <Navbar expand="lg" className="navbar-fill">
       <Container className="container text-center">
         <Navbar.Brand href="/">PropertyPulse</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -17,8 +26,18 @@ const Header = () => {
           <Nav className="navbar">
             <Nav.Link href="/listings">Listings</Nav.Link>
             <Nav.Link href="/forum">PropertyTalks</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
-            
+
+            {Auth.loggedIn() ? (
+              <>
+                <Nav.Link onClick={logout}>Logout</Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="/login">Login</Nav.Link>
+              </>
+            )}
+
+            {/* <Nav.Link href="/signup">Signup</Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
 

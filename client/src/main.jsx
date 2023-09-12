@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp';
 import Listings from './pages/Listings.jsx';
 import SingleListing from './pages/SingleListing.jsx';
 import Forum from './pages/Forum.jsx';
+import SingleForumTopic from './pages/SingleForumTopic.jsx';
 
 import { ThemeProvider, createTheme} from '@mui/material'
 
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: '/forum',
         element: <Forum />
+      },
+      {
+        path: '/forum/:topicId',
+        element: <SingleForumTopic/>
       },
     ]
   },
