@@ -2,7 +2,6 @@ import { Grid, Card, Stack, CardMedia, CardActionArea, Typography,CardContent, B
  } from "@mui/material";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
-import './index.css'
 const ListingCard =({listings}) =>{
 
     const [page, setPage] = useState(1);
@@ -50,15 +49,17 @@ if(!listings){
                     <CardContent>
                     <div>
                         <Typography gutterBottom variant="h6" component="div">
-                            {listing.streetAddress}
+                            {listing.streetAddress}, {listing.city}
                         </Typography>
                         <Typography gutterBottom variant="h5" component="div">
                             $ {listing.price.toLocaleString('en-US')} 
                         </Typography>
                     </div>
                         <Typography variant="body2" color="text.secondary">
-                            Bedrooms:{listing.bedrooms}
-                            Bahtrooms:{listing.bathrooms}
+                            Bedrooms: {listing.bedrooms}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                             Bahtrooms: {listing.bathrooms}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

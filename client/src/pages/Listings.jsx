@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {searchCity} from "../utils/API";
 
-import { Button, Container, TextField, Stack, FormGroup, FormControlLabel , Switch} from '@mui/material';
+import { Button, Container, TextField, Stack, FormGroup, FormControlLabel , Switch, Typography} from '@mui/material';
 import ListingCard from "../components/ListingCard";
 // import { Container, TextField, Card, CardActions, CardMedia, CardActionArea, Typography,CardContent
 //  } from "@mui/material";
@@ -13,15 +13,11 @@ const Listings = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filter,setFilter] = useState(false);
 
-    let sendFilter;
-    useEffect(()=>{
-        filter ? sendFilter = 'forRent' : sendFilter = 'forSale'
-    
-    },[filter])
+    const sendFilter = filter ? 'forRent' : 'forSale';
 
     const handleFetchListings = async (searchThis) => {
         try {
-
+            console.log(sendFilter)
             const data = await searchCity(searchThis,sendFilter);
             updateListings(data);
             console.log(data);
@@ -36,6 +32,8 @@ const Listings = () => {
     const handleChange = (e) =>{
         setFilter(e.target.checked);
     }
+//switch
+
 
 
     return (
@@ -43,9 +41,14 @@ const Listings = () => {
             
             <Container>
                 <FormGroup>
-                    <FormControlLabel  control={<Switch />} label="For Rent" checked={filter} name="rent" onChange={handleChange} id="filter"/>
-                   
-                    <TextField fullWidth label="Search Location" id="fullWidth" type="text"
+
+                    <Stack direction="row" spacing={1} alignItems="center">
+                    <Typography>For Sale</Typography>
+                    <FormControlLabel control={<Switch />} color="primary" checked={filter} name="rent" onChange={handleChange} id="filter"/>
+                   <Typography>For Rent</Typography>
+                   </Stack>
+
+                    <TextField  label="Search Location" id="fullWidth" type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)} />
                 </FormGroup>

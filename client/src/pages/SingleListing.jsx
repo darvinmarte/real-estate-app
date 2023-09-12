@@ -1,9 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { searchbyID } from '../utils/API';
 import { useState, useEffect } from 'react';
-import { Card, CardMedia, CardContent, Typography, Button, CardActionArea, CardActions, Grid, Container,Stack,Box } from "@mui/material";
-import CommentList from '../components/CommentList'
-import CommentForm from '../components/CommentForm'
+import { CardMedia, Typography, Button, Grid, Container, Stack, Box } from "@mui/material";
+import Comments from '../components/Comments';
 // zID is the id of the listing 
 import "./pages.css"
 const SingleListing = () => {
@@ -39,29 +38,28 @@ const SingleListing = () => {
     };
 
     if (!data) {
-        console.log('No Data');
         return (
             <div>
                 Loading..
             </div>
         )
     } else {
-        console.log(data);
+
         const currentImage = data.big[currentImageIndex].url;
 
-    
+
         return (
             <>
                 <Container >
                     <Grid container spacing={2}>
                         <Grid item lg={6} >
-                            
-                        <Box>
-                            <CardMedia  
-                            component="img"
-                            image={currentImage}
-                            />
-                        </Box>
+
+                            <Box>
+                                <CardMedia
+                                    component="img"
+                                    image={currentImage}
+                                />
+                            </Box>
 
                             <Stack direction="row" spacing={2}>
                                 <Button onClick={handlePrevImage} disabled={currentImageIndex === 0}>
@@ -72,38 +70,33 @@ const SingleListing = () => {
                                 </Button>
                             </Stack>
                         </Grid>
-                    <Grid item lg={6}>
+                        <Grid item lg={6}>
 
 
-                        <Container >
-                            <Typography gutterBottom variant="h5" component="div">
-                                Price: ${data.price.toLocaleString()}
-                            </Typography>
-                            <Typography gutterBottom variant="h6" component="div">
-                                Address: {data.address.streetAddress} , {data.address.city}, {data.address.state} {data.address.zipcode}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Number of bedrooms: {data.bedrooms}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Number of bathrooms: {data.bathrooms}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary" >
-                                {data.description}
-                            </Typography>
-                        </Container>
+                            <Container >
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Price: ${data.price.toLocaleString()}
+                                </Typography>
+                                <Typography gutterBottom variant="h6" component="div">
+                                    Address: {data.address.streetAddress} , {data.address.city}, {data.address.state} {data.address.zipcode}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Number of bedrooms: {data.bedrooms}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Number of bathrooms: {data.bathrooms}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary" >
+                                    {data.description}
+                                </Typography>
+                            </Container>
+                        </Grid>
+
                     </Grid>
-
-                    </Grid>
-            
-                
-
                 </Container>
+
                 <Container>
-
-                <CommentList zID={zID} />
-
-                <CommentForm />
+                    <Comments />
                 </Container>
             </>
         )

@@ -1,22 +1,7 @@
-// import { useState } from "react"
-import { QUERY_LISTING_COMMENTS } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
-import { TextField, Button, FormGroup, Container, Typography, Stack, Card, CardHeader, CardContent } from '@mui/material'
+import { Container, Typography, Stack, Card, CardHeader, CardContent } from '@mui/material'
 
-export default function CommentList({zID}) {
+export default function CommentList({data}) {
 
-        // useEffect(() => {
-        
-        // }, [data])
-
-
-    const {data, loading, error} = useQuery
-        (QUERY_LISTING_COMMENTS, { variables: { zillowID: zID }})
-
-    const commentData = data?.listingComments || [];
-
-    if (loading) return <div>loading...</div>
-    if (error) return <div>error {error.message}</div>
 
     return(
 
@@ -25,8 +10,8 @@ export default function CommentList({zID}) {
                 Comments:
             </Typography>
                 <Stack spacing={3}>
-                    {commentData &&
-                        commentData.comments.map(({ comment, authorName, dateCreated}) => (
+                    {data &&
+                        data.comments.map(({ comment, authorName, dateCreated}) => (
                             <Card key={dateCreated} variant="outlined">
 
                                 <CardHeader
