@@ -33,13 +33,13 @@ export default function CommentForm({ onSubmit }) {
             setComment('')
 
         } catch (error) {
-           console.error('Error adding comment:', error) 
+            console.error('Error adding comment:', error)
         }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <TextField 
+            <TextField
                 id="outlined-basic"
                 label="Comment"
                 variant="outlined"

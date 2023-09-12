@@ -5,13 +5,13 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     //User query resolvers
-    profiles: async () => {
-      return User.find();
-    },
+    // profiles: async () => {
+    //   return User.find();
+    // },
 
-    profile: async (parent, { profileId }) => {
-      return User.findOne({ _id: profileId });
-    },
+    // profile: async (parent, { profileId }) => {
+    //   return User.findOne({ _id: profileId });
+    // },
     //Forum query resolvers
     getAllForumTopics: async () => {
       return ForumTopic.find();
@@ -27,7 +27,7 @@ const resolvers = {
     
     me: async (parent, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('posts');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -38,9 +38,9 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    removeProfile: async (parent, { profileId }) => {
-      return User.findOneAndDelete({ _id: profileId });
-    },
+    // removeProfile: async (parent, { profileId }) => {
+    //   return User.findOneAndDelete({ _id: profileId });
+    // },
     // only if user is logged in be able to delte 
 
     login: async (parent, { email, password }) => {
