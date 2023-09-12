@@ -11,6 +11,7 @@ import { ADD_LISTING_COMMENT } from '../../utils/mutations';
 //send muation on a click
 
 
+// eslint-disable-next-line react/prop-types
 export default function CommentForm({ onSubmit }) {
 
     const { zID } = useParams();
