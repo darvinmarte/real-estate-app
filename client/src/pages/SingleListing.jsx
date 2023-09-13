@@ -5,6 +5,7 @@ import { CardMedia, Typography, Button, Grid, Container, Stack, Box } from "@mui
 import Comments from '../components/Comments';
 // zID is the id of the listing 
 import "./pages.css"
+
 const SingleListing = () => {
     const { zID } = useParams();
     const [data, setData] = useState(null);
@@ -39,9 +40,9 @@ const SingleListing = () => {
 
     if (!data) {
         return (
-            <div>
-                Loading..
-            </div>
+            <Container>
+                Loading...
+            </Container>
         )
     } else {
 
@@ -80,10 +81,10 @@ const SingleListing = () => {
                                 <Typography gutterBottom variant="h6" component="div">
                                     Address: {data.address.streetAddress} , {data.address.city}, {data.address.state} {data.address.zipcode}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
+                                <Typography gutterBottom variant="body1" color="text.secondary">
                                     Number of bedrooms: {data.bedrooms}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
+                                <Typography gutterBottom variant="body1" color="text.secondary">
                                     Number of bathrooms: {data.bathrooms}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary" >
@@ -95,9 +96,9 @@ const SingleListing = () => {
                     </Grid>
                 </Container>
 
-                <Container>
-                    <Comments />
-                </Container>
+                <div style={{margin:'4%'}}>
+                    <Comments zId={zID} className="comments"/>
+                </div>
             </>
         )
 
