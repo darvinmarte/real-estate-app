@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useMutation } from '@apollo/client'
 import { useParams } from 'react-router-dom';
 
+import { Link } from 'react-router-dom';
+
 import { ADD_LISTING_COMMENT } from '../../utils/mutations';
 //form listing
 import { QUERY_LISTING_COMMENTS } from "../../utils/queries";
@@ -12,10 +14,11 @@ import CommentList from '../CommentList';
 
 export default function Comments() {
 
+
     const { zID } = useParams();
 
     const [newComment, setNewComment] = useState('');
-    const authorName = Auth.getProfile().data.name;
+    // const authorName = Auth.getProfile().data.name;
     const { data, loading } = useQuery
         (QUERY_LISTING_COMMENTS, { variables: { zillowId: zID } })
 
@@ -51,9 +54,12 @@ export default function Comments() {
     return (
 
         <>
+
+            
         <CommentList data={commentData} >
         </CommentList>
 
+            {Auth.loggedIn() ? (
             <Box style={{margin:'20px 0'}}>
 
                 <FormGroup onSubmit={handleSubmit}>
@@ -76,7 +82,12 @@ export default function Comments() {
                         Leave a comment!
                     </Button>
                 </FormGroup>
-            </Box>
+                </Box> ) : (
+                <p>
+                    You need to be logged in to add comments. Please{' '}
+                    <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+                </p>
+            )}
         </>
 
     )
