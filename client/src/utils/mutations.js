@@ -69,8 +69,8 @@ mutation {
 `;
 
 export const ADD_LISTING_COMMENT = gql`
-mutation addListingComment($zillowID: String!, $comment: String!, $authorName: String!) {
-  addListingComment(zillowID: $zillowID, comment: $comment, authorName: $authorName) {
+mutation addListingComment($zillowId: String!, $comment: String!, $authorName: String!) {
+  addListingComment(zillowID: $zillowId, comment: $comment, authorName: $authorName) {
     _id
     zillowID
     comments {

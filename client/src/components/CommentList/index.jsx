@@ -14,8 +14,8 @@ export default function CommentList({data}) {
             </Typography>
                 <Stack spacing={3}>
                     {data &&
-                        data.comments.map(({ comment, authorName, dateCreated}) => (
-                            <Card key={dateCreated} variant="outlined">
+                        data.comments.map(({ comment, authorName, dateCreated, _id}) => (
+                            <Card key={_id} variant="outlined">
 
                                 <CardHeader
                                     title={authorName}
