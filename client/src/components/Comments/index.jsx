@@ -17,7 +17,7 @@ export default function Comments() {
     const [newComment, setNewComment] = useState('');
     const authorName = Auth.getProfile().data.name;
     const { data, loading } = useQuery
-        (QUERY_LISTING_COMMENTS, { variables: { zillowID: zID } })
+        (QUERY_LISTING_COMMENTS, { variables: { zillowId: zID } })
 
     const [addListingComment, { error }] = useMutation(ADD_LISTING_COMMENT,{
         refetchQueries: [
@@ -28,7 +28,7 @@ export default function Comments() {
 
 
     const commentData = data?.listingComments || [];
-
+    console.log(commentData);
     if (loading) return <div>loading...</div>
 
     const handleSubmit = async (e) => {
@@ -36,11 +36,12 @@ export default function Comments() {
         try {
             const { data } = await addListingComment({
                 variables: {
-                    zillowID: zID,
+                    zillowId: zID,
                     comment: newComment,
                     authorName: authorName,
                 },
             });
+            console.log(data);
             setNewComment('');
         } catch (error) {
             console.error('Error adding comment:', error)

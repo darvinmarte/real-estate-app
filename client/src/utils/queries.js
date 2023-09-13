@@ -33,10 +33,12 @@ export const QUERY_SINGLE_TOPIC = gql`
 
 
 export const QUERY_LISTING_COMMENTS = gql`
-query listingComments($zillowID: String!) {
-  listingComments(zillowID: $zillowID) {
+query listingComments($zillowId: String!) {
+  listingComments(zillowId: $zillowId) {
+    
     zillowID
     comments {
+      _id
      comment
      authorName
      dateCreated

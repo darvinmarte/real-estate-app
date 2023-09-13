@@ -21,8 +21,8 @@ const resolvers = {
       return ForumTopic.findOne({ _id: topicId });
     },
     // ListingComment query resolvers
-    listingComments: async (_, { zID })=> {
-        return ListingComment.findOne({ zillowId: zID})
+    listingComments: async (_, { zillowId })=> {
+        return ListingComment.findOne({ zillowID: zillowId})
     },
     
     me: async (parent, context) => {
