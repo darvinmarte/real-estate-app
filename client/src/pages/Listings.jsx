@@ -1,12 +1,24 @@
 import { useState, useEffect } from "react";
 import {searchCity} from "../utils/API";
 
-import { Button, Container, TextField, Stack, FormGroup, FormControlLabel , Switch, Typography} from '@mui/material';
+import { Button, Container, TextField, Stack, FormGroup, FormControlLabel , Switch, Typography, Box, Grid, Modal} from '@mui/material';
 import ListingCard from "../components/ListingCard";
-// import { Container, TextField, Card, CardActions, CardMedia, CardActionArea, Typography,CardContent
-//  } from "@mui/material";
+
 
 import { useListings } from "../utils/ListingsContext";
+
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    maxwidth: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
 
 const Listings = () => {
     const { listings, updateListings } = useListings();
@@ -17,10 +29,13 @@ const Listings = () => {
 
     const handleFetchListings = async (searchThis) => {
         try {
-            console.log(sendFilter)
-            const data = await searchCity(searchThis,sendFilter);
-            updateListings(data);
-            console.log(data);
+            if(searchThis == ''){
+                handleOpen();
+            }else{
+
+                const data = await searchCity(searchThis,sendFilter);
+                updateListings(data);
+            }
 
        
 
@@ -32,15 +47,34 @@ const Listings = () => {
     const handleChange = (e) =>{
         setFilter(e.target.checked);
     }
-//switch
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
 
 
     return (
         <main>
-            
-            <Container>
-                <FormGroup>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="body1" component="h4">
+                        I cant find nothing duuhh!
+                    </Typography>
+                    <Typography variant="body2" id="modal-modal-description" sx={{ mt: 2 }}>
+                       Please enter a city, state or zipcode
+                    </Typography>
+                </Box>
+            </Modal>
+            <Container >
+                <Stack direction="row" spacing={1} className="searchArea">
+
+                <FormGroup className="searchForm">
 
                     <Stack direction="row" spacing={1} alignItems="center">
                     <Typography>For Sale</Typography>
@@ -50,9 +84,12 @@ const Listings = () => {
 
                     <TextField  label="Search Location" id="fullWidth" type="text"
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)} />
+                    onChange={(e) => setSearchQuery(e.target.value)}/>
                 </FormGroup>
-                <Button variant = "contained" onClick={() => handleFetchListings(searchQuery)}>Search</Button>
+                <Grid direction="column" display="flex" justifyContent="end">
+                <Button size="large" variant = "contained" onClick={() => handleFetchListings(searchQuery)}>Search</Button>
+                </Grid>
+                </Stack>
             </Container>
 
 

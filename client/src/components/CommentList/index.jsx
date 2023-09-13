@@ -3,12 +3,12 @@ import { Container, Typography, Stack, Card, CardHeader, CardContent } from '@mu
 export default function CommentList({data}) {
 
     if (!data.comments) {
-        return <Typography> No comments yet </Typography>
+        return <Typography>Be the first to write something about this property! </Typography>
     }
 
     return(
 
-        <Container>
+        <>
             <Typography variant="h6" gutterBottom>
                 Comments:
             </Typography>
@@ -18,9 +18,10 @@ export default function CommentList({data}) {
                             <Card key={_id} variant="outlined">
 
                                 <CardHeader
-                                    title={authorName}
+                                    title={`Posted by: ${authorName}`}
                                     subheader={dateCreated}
                                 >
+                                
                                 </CardHeader>
 
                                 <CardContent>
@@ -32,6 +33,6 @@ export default function CommentList({data}) {
                         ))}
                 </Stack>
   
-        </Container>
+        </>
     )
 }

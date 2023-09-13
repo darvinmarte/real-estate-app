@@ -34,7 +34,7 @@ if(!listings){
 
     return (
         <div>
-           
+         
         <Grid container spacing={3} >
 
             {cardsToShow.map((listing) => (
@@ -67,7 +67,7 @@ if(!listings){
             </Link>
             </Grid>))}
         </Grid>
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} className="cardsButtons">
                 <Button variant="contained" onClick={handlePrevPage} disabled={page === 1}>
                     Previous Page
                 </Button>

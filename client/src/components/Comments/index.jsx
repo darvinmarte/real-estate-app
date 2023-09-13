@@ -54,7 +54,7 @@ export default function Comments() {
         <CommentList data={commentData} >
         </CommentList>
 
-            <Box style={{ margin: '10px' }}>
+            <Box style={{margin:'20px 0'}}>
 
                 <FormGroup onSubmit={handleSubmit}>
                     <TextField
