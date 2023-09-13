@@ -7,7 +7,7 @@ import { Typography, Container, Card, CardContent, CardMedia, Button, CardAction
 
 //images provided from unsplash.com
 const images = ['./src/assets/images/photo1.jpg', './src/assets/images/photo2.jpg', './src/assets/images/photo3.jpg']
-const texts = ['Photo by Daniel Barnes', 'Photo by Fernando Alvarez Rodriguez', 'Photo by John Fornander']
+// const texts = ['Photo by Daniel Barnes', 'Photo by Fernando Alvarez Rodriguez', 'Photo by John Fornander']
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,88 +31,100 @@ const Home = () => {
           {/* <div className="text">{texts[currentIndex]}</div> */}
           {/* <Typography className="textOver" variant="h6">Welcome to PropertyPulse where you find your next home and learn all about it!</Typography> */}
         </div>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-          <Grid item xs={2} sm={4} md={4}>
-            <Card sx={{ maxWidth: 345 }}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="../src/assets/images/listingsphoto.jpg"
-                  alt="listings photo"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Listings
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Browse listings below for rent and for sale.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Link to="/listings">
-                  <Button size="small" color="primary">
-                    Click here
-                  </Button>
-                </Link>
-              </CardActions>
-            </Card>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ sm: 4, md: 12 }}>
+          <Grid item md={4}>
+            
+              <Card sx={{ maxWidth: 345 }}>
+              <Link to="/listings" style={{ textDecoration: "none" }}>
+                {/* <CardActionArea> */}
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image="../src/assets/images/listingsphoto.jpg"
+                    alt="listings photo"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Listings
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Browse listings below for rent and for sale.
+                    </Typography>
+                  </CardContent>
+                {/* </CardActionArea> */}
+            </Link>
+                <CardActions>
+                  <Link to="/listings">
+                    <Button size="small" color="primary">
+                      Click here
+                    </Button>
+                  </Link>
+                </CardActions>
+              </Card>
+            
           </Grid>
 
-          <Grid item xs={2} sm={4} md={4} style={{margin: "auto"}}>
-            <Card sx={{ maxWidth: 345 }}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="../src/assets/images/talksphoto.jpg"
-                  alt="talk photo"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    PropertyTalk
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Join conversations about all things real estate.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Link to="/forum">
-                  <Button size="small" color="primary">
-                    Click here
-                  </Button> </Link>
-              </CardActions>
-            </Card>
+          <Grid item md={4}>
+            
+              <Card sx={{ maxWidth: 345 }}>
+              <Link to="/forum" style={{ textDecoration: "none" }}>
+                {/* <CardActionArea> */}
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image="../src/assets/images/talksphoto.jpg"
+                    alt="talk photo"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      PropertyTalk
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Join conversations about all things real estate.
+                    </Typography>
+                  </CardContent>
+                {/* </CardActionArea> */}
+                </Link>
+                <CardActions>
+                  <Link to="/forum">
+                    <Button size="small" color="primary">
+                      Click here
+                    </Button> </Link>
+                </CardActions>
+              </Card>
+            
           </Grid>
 
-          <Grid item xs={2} sm={4} md={4}>
-            <Card sx={{ maxWidth: 345 }}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="../src/assets/images/signupphoto.jpg"
-                  alt="signup photo"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Login / SignUp
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Login or SignUp for full experience.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Link to="/login">
-                  <Button size="small" color="primary">
-                    Click here
-                  </Button>
-                </Link>
-              </CardActions>
-            </Card>
+          <Grid item md={4}>
+            
+              <Card sx={{ maxWidth: 345 }}>
+            <Link to="/login" style={{ textDecoration: "none" }}>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image="../src/assets/images/signupphoto.jpg"
+                    alt="signup photo"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      Login / SignUp
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Login or SignUp for full experience.
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+            </Link>
+                <CardActions>
+                  <Link to="/login">
+                    <Button size="small" color="primary">
+                      Click here
+                    </Button>
+                  </Link>
+                </CardActions>
+              </Card>
+            
           </Grid>
         </Grid>
       </Container>
