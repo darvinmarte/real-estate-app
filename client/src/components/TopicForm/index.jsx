@@ -23,8 +23,8 @@ const TopicForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(topicTitle);
-    console.log(topicContent);
+    // console.log(topicTitle);
+    // console.log(topicContent);
     try {
       const { data } = await addForumTopic({
         variables: {

@@ -52,7 +52,6 @@ export const QUERY_ME = gql`
       _id
       name
       email
-      about
       posts {
         _id
         title
