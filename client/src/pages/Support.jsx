@@ -18,20 +18,32 @@ export default function Support() {
         navigate('/checkout', { state: { amount } })
     }
 
+
     return (
-        <Grid 
-            container 
-            direction="column"
-            justifyContent="space-between"
-            alignItems="center">
-    
-            <Typography>If you would like to support PropertyPulse by making a donation, you may do so below:</Typography>
+        <div className="textBox">
+            {
+                Auth.loggedIn() ? (
+                    <Grid
+                        container
+                        direction="column"
+                        // justifyContent="space-around"
+                        alignItems="center"
+                        >
 
-            <form className="flexBox">
-                <TextField id="outlined-basic" label="Amount" variant="outlined" type='number' value={amount} onChange={handleChange} />
-                <Button variant="contained" onClick={handleDonate}>Donate!</Button>
-            </form>
+                        <Typography variant="h6" className="marginTop">If you would like to support PropertyPulse by making a donation, you may do so below:</Typography>
 
-        </Grid>
+                        <form className="flexBox marginTop">
+                            <TextField id="outlined-basic" label="Amount" variant="outlined" type='number' value={amount} onChange={handleChange} />
+                            <Button variant="contained" onClick={handleDonate}>Donate!</Button>
+                        </form>
+
+                    </Grid>
+                ) : (
+                    <Grid>
+                    <Typography variant="h4" className="marginTop"> Please login to donate!</Typography>
+                        </Grid>
+                )
+            }
+        </div>
     )
-    }
+}
