@@ -6,21 +6,9 @@ import { QUERY_TOPICS } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-import { Card, Button, CardContent, CardActions, Box, CardHeader, Stack, Typography, Grid, Container, Modal } from "@mui/material";
+import { Card, Button, CardContent, CardActions, CardHeader, Stack, Typography, Grid, Container, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material";
 
 import { useState } from "react";
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  maxwidth: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 const TopicList = ({ topics }) => {
   if (!topics.length) {
@@ -43,24 +31,31 @@ const TopicList = ({ topics }) => {
     username = Auth.getProfile().data.name;
   } 
 
+  const [topicId, setTopicId] = useState('');
+
+  //logic for CONFIRMATION modal
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   //function to remove topic, opens error modal if user trying to remove topic that doesn't belong to them
-  const handleRemoveTopic = async (topicId) => {
+  const handleRemoveTopic = async () => {
     try {
       const { data } = await removeForumTopic({
         variables: { topicId },
       });
     } catch (err) {
       console.error(err);
-      handleOpen();
+      // handleOpen();
     }
+    handleClose();
   };
 
-  //logic for ERROR modal
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+  //Pages
   const [page, setPage] = useState(1);
 
   // Calculate the start and end indexes for the current page
@@ -81,25 +76,31 @@ const TopicList = ({ topics }) => {
   return (
     <>
 
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Please confirm"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Please confirm you would like to delete this topic.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleRemoveTopic} autoFocus>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <Typography variant="h4">
         Total {topics.length} topics currently in discussion.
       </Typography>
-
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="body1" component="h4">
-            Oh no!
-          </Typography>
-          <Typography variant="body2" id="modal-modal-description" sx={{ mt: 2 }}>
-            You cannot remove the topic you didn't post.
-          </Typography>
-        </Box>
-      </Modal>
 
       <Container style={{ marginBottom: "4%" }}>
         {topics &&
@@ -129,7 +130,7 @@ const TopicList = ({ topics }) => {
 
                   <Grid item sx={{ '& button': { m: 1 } }}>
                     {username === topic.author && (
-                    <Button variant="outlined" color="error" onClick={() => handleRemoveTopic(topic._id)}>
+                      <Button variant="outlined" color="error" onClick={() => { setTopicId(topic._id); handleClickOpen() }}>
                       REMOVE TOPIC
                     </Button> )}
 
