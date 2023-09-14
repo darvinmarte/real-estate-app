@@ -21,15 +21,15 @@ const resolvers = {
       return ForumTopic.findOne({ _id: topicId });
     },
     // ListingComment query resolvers
-    listingComments: async (_, { zillowId })=> {
-        return ListingComment.findOne({ zillowID: zillowId})
+    listingComments: async (_, { zillowId }) => {
+      return ListingComment.findOne({ zillowID: zillowId });
     },
-    
+
     me: async (parent, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('posts');
+        return User.findOne({ _id: context.user._id }).populate("posts");
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
   Mutation: {
@@ -41,7 +41,7 @@ const resolvers = {
     // removeProfile: async (parent, { profileId }) => {
     //   return User.findOneAndDelete({ _id: profileId });
     // },
-    // only if user is logged in be able to delte 
+    // only if user is logged in be able to delte
 
     login: async (parent, { email, password }) => {
       console.log(email, password);
@@ -79,14 +79,14 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-    removeForumTopic: async (parent, {topicId}, context) => {
+    removeForumTopic: async (parent, { topicId }, context) => {
       if (context.user) {
         const topic = await ForumTopic.findOneAndDelete({
-          _id: topicId, 
+          _id: topicId,
           author: context.user.name,
         });
 
-        const user= await User.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { posts: topic._id } }
         );
@@ -113,41 +113,64 @@ const resolvers = {
       throw AuthenticationError;
     },
 
+    removeForumComment: async (parent, { topicId, commentId }, context) => {
+      if (context.user) {
+        return ForumTopic.findOneAndUpdate(
+          { _id: topicId },
+          {
+            $pull: {
+              comments: {
+                _id: commentId,
+                commentAuthor: context.user.name,
+              },
+            },
+          },
+          { new: true, runValidators: true }
+        );
+      }
+      throw AuthenticationError;
+    },
+
     //if it doesnt exist create it
-    addListingComment: async(_, {zillowID, comment, authorName}, context) => {
-      if (context.user){
+    addListingComment: async (
+      _,
+      { zillowID, comment, authorName },
+      context
+    ) => {
+      if (context.user) {
         // const listingComment = await ListingComment.create(args)
         // return listingComment
 
-        //find if the id exists in database, 
+        //find if the id exists in database,
         const data = await ListingComment.findOneAndUpdate(
-          {zillowID: zillowID},
+          { zillowID: zillowID },
           {
-          //add comment to comment array
-          $addToSet:{
-            comments:{ comment, authorName}
+            //add comment to comment array
+            $addToSet: {
+              comments: { comment, authorName },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
           }
-        },{
-          new: true,
-          runValidators: true,
+        );
+        if (!data) {
+          const newData = await ListingComment.create({
+            zillowID: zillowID,
+            comments: [
+              {
+                comment,
+                authorName,
+              },
+            ],
+          });
+          return newData;
+        } else {
+          return data;
         }
-      )
-      if (!data){
-        const newData = await ListingComment.create({
-          zillowID: zillowID,
-          comments:[{
-            comment,
-            authorName
-          }]
-        })
-        return newData;
-      }else{
-        return data;
       }
-
-
-    }
-    throw AuthenticationError
+      throw AuthenticationError;
     },
   },
 };
