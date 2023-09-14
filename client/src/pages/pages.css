@@ -53,9 +53,7 @@ a{
     margin:10px;
 }
 
-.supportForm{
-    margin:auto;
-}
+
 
 .flexBox{
     display: flex !important;
@@ -65,4 +63,27 @@ a{
 .homepageCard a{
     text-decoration: none !important;
     color: black;
+}
+
+
+.textBox {
+        position: fixed;
+            width: 100%;
+            height: 75%;
+            padding: 20rem;
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 2%;
+            text-align: center;
+}
+.marginTop {
+    margin-top: 6rem !important;
+    color: white;
+}
+.white-text {
+    color: white;
+}
+.dark-text {
+    color: var(--main);
+    font-weight: bold;
 }
