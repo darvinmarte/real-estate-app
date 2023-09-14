@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { QUERY_TOPICS } from '../utils/queries';
+import { QUERY_TOPICS} from '../utils/queries';
 
 import { Container, Accordion, AccordionSummary, AccordionDetails, Button, Typography } from "@mui/material";
 
@@ -10,6 +10,7 @@ const Forum = () => {
     const { loading, data } = useQuery(QUERY_TOPICS);
     const topics = data?.getAllForumTopics || [];
     // console.log(topics);
+
     return (
         <main>
             <Container>

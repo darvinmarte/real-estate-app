@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
+import Auth from '../../utils/auth';
+
 import { Card, CardContent, CardHeader, Stack, Typography, Button } from "@mui/material";
 
 import { QUERY_SINGLE_TOPIC } from '../../utils/queries';
@@ -14,6 +16,12 @@ const ForumCommentsList = ({ comments = [] }) => {
   }
 
   const { topicId } = useParams();
+
+  let username = "";
+
+  if (Auth.loggedIn()) {
+    username = Auth.getProfile().data.name;
+  } 
 
   const [removeForumComment, { error }] = useMutation(REMOVE_FORUM_COMMENT,
     {
@@ -59,9 +67,11 @@ const ForumCommentsList = ({ comments = [] }) => {
                   {comment.commentText}
                 </Typography>
               </CardContent>
+              {username===comment.commentAuthor && (
               <Button variant="outlined" color="error" onClick={() => handleRemoveComment(comment._id)} style={{ marginBottom: "2%", marginLeft: "2%" }}>
                 REMOVE COMMENT
               </Button>
+              )}
             </Card>
           ))}
       </Stack>

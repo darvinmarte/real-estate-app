@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/client';
 import { REMOVE_TOPIC } from '../../utils/mutations';
 import { QUERY_TOPICS } from '../../utils/queries';
 
+import Auth from '../../utils/auth';
+
 import { Card, Button, CardContent, CardActions, Box, CardHeader, Stack, Typography, Grid, Container, Modal } from "@mui/material";
 
 import { useState } from "react";
@@ -34,6 +36,13 @@ const TopicList = ({ topics }) => {
         'getAllForumTopics',
       ]
     });
+
+  let username = "";
+
+  if (Auth.loggedIn()) {
+    username = Auth.getProfile().data.name;
+  } 
+
 
   //function to remove topic, opens error modal if user trying to remove topic that doesn't belong to them
   const handleRemoveTopic = async (topicId) => {
@@ -118,13 +127,11 @@ const TopicList = ({ topics }) => {
                     Published on {topic.createdAt}
                   </Typography>
 
-
-
                   <Grid item sx={{ '& button': { m: 1 } }}>
-
+                    {username === topic.author && (
                     <Button variant="outlined" color="error" onClick={() => handleRemoveTopic(topic._id)}>
                       REMOVE TOPIC
-                    </Button>
+                    </Button> )}
 
                     <Button variant="outlined">
                       <Link
