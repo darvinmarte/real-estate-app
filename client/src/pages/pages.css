@@ -62,3 +62,7 @@ a{
     flex-direction: column !important;
     width: 30%
 }
+.homepageCard a{
+    text-decoration: none !important;
+    color: black;
+}

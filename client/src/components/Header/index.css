@@ -1,0 +1,22 @@
+nav{
+    background-color:#1f2421;
+}
+nav a{
+    color:white !important;
+    transition: all 400ms ease;
+}
+a:hover{
+    color:#49A078 !important;
+    transition: all 400ms ease;
+}
+.active{
+    text-decoration: underline !important;
+    font-size: 1.5rem;
+}
+.notactive{
+    text-decoration: none !important;
+    font-size: 1rem;
+}
+.navbar-brand{
+    font-size: 2rem;
+}

@@ -50,7 +50,7 @@ const SingleListing = () => {
 
 
         return (
-            <>
+            <Box mt={3}>
                 <Container >
                     <Grid container spacing={2}>
                         <Grid item lg={6} >
@@ -99,7 +99,7 @@ const SingleListing = () => {
                 <div style={{margin:'4%'}}>
                     <Comments zId={zID} className="comments"/>
                 </div>
-            </>
+            </Box>
         )
 
     }
