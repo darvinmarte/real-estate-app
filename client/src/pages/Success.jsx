@@ -14,11 +14,11 @@ function Success() {
     );
 
 return (
-    <Grid>
-    <Box sx={{ width: '100%', maxWidth: 500 }}>
-        <Typography >Success!</Typography>
-        <Typography>Thank you for your donation!</Typography>
-        <Typography>You will now be redirected to the home page</Typography>
+    <Grid className="textBox">
+    <Box className="white-text marginTop">
+            <Typography variant="h3">Success!</Typography>
+            <Typography variant="h4">Thank you for your donation!</Typography>
+            <Typography variant="h4">You will now be redirected to the home page</Typography>
     </Box>
     </Grid>
 );

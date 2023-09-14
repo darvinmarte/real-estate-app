@@ -30,12 +30,12 @@ export default function SupportCheckout() {
     }
 
     return (
-        <Box class="supportForm">
-            <Typography>You are donating ${amount} to PropertyPulse. </Typography>
-            <Typography>PropertyPulse is thankful for your generosity!</Typography>
-            <Typography>If you wish to proceed, click the button to finish the checkout.</Typography>
+        <Box className="textBox">
+            <Typography variant="h6" className="marginTop">You are donating <span className="dark-text">${amount}</span> to PropertyPulse. </Typography>
+            <Typography variant="h6" className="white-text">PropertyPulse is thankful for your generosity!</Typography>
+            <Typography variant="h6" className="white-text">If you wish to proceed, click the button to finish the checkout.</Typography>
             {Auth.loggedIn() ? (
-                <Button onClick={submitCheckout}>Finish Checkout</Button>
+                <Button variant="contained" size="large" onClick={submitCheckout}>Finish Checkout</Button>
             ) : (
                 <p>Please login to finish your donation.</p>
             )}

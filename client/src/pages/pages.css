@@ -53,9 +53,7 @@ a{
     margin:10px;
 }
 
-.supportForm{
-    margin:auto;
-}
+
 
 .flexBox{
     display: flex !important;
@@ -76,4 +74,11 @@ a{
 .marginTop {
     margin-top: 6rem !important;
     color: white;
+}
+.white-text {
+    color: white;
+}
+.dark-text {
+    color: var(--main);
+    font-weight: bold;
 }
