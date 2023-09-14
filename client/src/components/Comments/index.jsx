@@ -16,9 +16,12 @@ export default function Comments() {
 
 
     const { zID } = useParams();
-
+    let authorName;
     const [newComment, setNewComment] = useState('');
-    // const authorName = Auth.getProfile().data.name;
+    if (Auth.loggedIn()){
+    authorName = Auth.getProfile().data.name;
+
+    }
     const { data, loading } = useQuery
         (QUERY_LISTING_COMMENTS, { variables: { zillowId: zID } })
 
@@ -31,7 +34,7 @@ export default function Comments() {
 
 
     const commentData = data?.listingComments || [];
-    console.log(commentData);
+
     if (loading) return <div>loading...</div>
 
     const handleSubmit = async (e) => {
@@ -44,7 +47,7 @@ export default function Comments() {
                     authorName: authorName,
                 },
             });
-            console.log(data);
+
             setNewComment('');
         } catch (error) {
             console.error('Error adding comment:', error)
