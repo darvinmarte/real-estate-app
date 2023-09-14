@@ -1,4 +1,12 @@
-import { Card, CardContent, CardHeader, Stack, Typography } from "@mui/material";
+import { useParams } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+
+import Auth from '../../utils/auth';
+
+import { Card, CardContent, CardHeader, Stack, Typography, Button } from "@mui/material";
+
+import { QUERY_SINGLE_TOPIC } from '../../utils/queries';
+import { REMOVE_FORUM_COMMENT } from '../../utils/mutations';
 
 const ForumCommentsList = ({ comments = [] }) => {
   if (!comments.length) {
@@ -7,8 +15,38 @@ const ForumCommentsList = ({ comments = [] }) => {
     </Typography>;
   }
 
+  const { topicId } = useParams();
+
+  let username = "";
+
+  if (Auth.loggedIn()) {
+    username = Auth.getProfile().data.name;
+  } 
+
+  const [removeForumComment, { error }] = useMutation(REMOVE_FORUM_COMMENT,
+    {
+      refetchQueries: [
+        QUERY_SINGLE_TOPIC,
+        'getOneForumTopic',
+      ]
+    });
+
+  //function to remove comment
+  const handleRemoveComment = async (commentId) => {
+    try {
+      const { data } = await removeForumComment({
+        variables: { topicId, commentId },
+      });
+    } catch (err) {
+      console.error(err);
+      // alert("Not your comment!")
+      // handleOpen();
+    }
+  };
+
   return (
     <div>
+      
       <Typography variant="h4" gutterBottom>
         Comments:
       </Typography>
@@ -29,6 +67,11 @@ const ForumCommentsList = ({ comments = [] }) => {
                   {comment.commentText}
                 </Typography>
               </CardContent>
+              {username===comment.commentAuthor && (
+              <Button variant="outlined" color="error" onClick={() => handleRemoveComment(comment._id)} style={{ marginBottom: "2%", marginLeft: "2%" }}>
+                REMOVE COMMENT
+              </Button>
+              )}
             </Card>
           ))}
       </Stack>
