@@ -79,6 +79,22 @@ const resolvers = {
       throw AuthenticationError;
     },
 
+    removeForumTopic: async (parent, {topicId}, context) => {
+      if (context.user) {
+        const topic = await ForumTopic.findOneAndDelete({
+          _id: topicId, 
+          author: context.user.name,
+        });
+
+        const user= await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { posts: topic._id } }
+        );
+        return user;
+      }
+      throw AuthenticationError;
+    },
+
     addForumComment: async (parent, { topicId, commentText }, context) => {
       if (context.user) {
         return ForumTopic.findOneAndUpdate(

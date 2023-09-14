@@ -42,6 +42,15 @@ export const ADD_TOPIC = gql`
   }
 `;
 
+export const REMOVE_TOPIC = gql`
+  mutation removeForumTopic($topicId: ID!) {
+    removeForumTopic(topicId: $topicId) {
+      _id
+    }
+  }
+`;
+
+
 export const ADD_FORUM_COMMENT = gql`
   mutation addForumComment($topicId: ID!, $commentText: String!) {
     addForumComment(topicId: $topicId, commentText: $commentText) {
@@ -59,14 +68,7 @@ export const ADD_FORUM_COMMENT = gql`
   }
 `;
 
-export const SIGN_OUT_MUTATION = gql`
-mutation {
-  signOut {
-    success
-    message
-  }
-}
-`;
+
 
 export const ADD_LISTING_COMMENT = gql`
 mutation addListingComment($zillowId: String!, $comment: String!, $authorName: String!) {
