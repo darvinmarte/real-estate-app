@@ -6,7 +6,7 @@ import {useState} from 'react';
 import Auth from '../../utils/auth';
 
 import { Card, CardContent, CardHeader, Stack, Typography, Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material";
-
+import DeleteIcon from '@mui/icons-material/Delete';
 import { QUERY_SINGLE_TOPIC } from '../../utils/queries';
 import { REMOVE_FORUM_COMMENT } from '../../utils/mutations';
 
@@ -89,23 +89,23 @@ const ForumCommentsList = ({ comments = [] }) => {
         {comments &&
           comments.map((comment) => (
             <Card key={comment._id} variant="outlined">
-
+              <Stack direction="row" display="flex" justifyContent="space-between">
               <CardHeader
                 title={comment.commentAuthor}
                 subheader={comment.createdAt}
               >
               </CardHeader>
-
+                {username === comment.commentAuthor && (
+                  <Button startIcon={<DeleteIcon />} color="error" onClick={() => { setCommentId(comment._id); handleClickOpen() }}>
+                  </Button>
+                )}
+            </Stack>
               <CardContent>
                 <Typography variant="paragraph">
                   {comment.commentText}
                 </Typography>
               </CardContent>
-              {username===comment.commentAuthor && (
-                <Button variant="outlined" color="error" onClick={() => { setCommentId(comment._id); handleClickOpen() }} style={{ marginBottom: "2%", marginLeft: "2%" }}>
-                REMOVE COMMENT
-              </Button>
-              )}
+            
             </Card>
           ))}
       </Stack>
