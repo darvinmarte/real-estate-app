@@ -1,8 +1,10 @@
 const { useForkRef } = require("@mui/material");
 const { User, ForumTopic, ListingComment } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
+
   Query: {
     //User query resolvers
     // profiles: async () => {
@@ -30,6 +32,32 @@ const resolvers = {
         return User.findOne({ _id: context.user._id }).populate('posts');
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    checkout: async (_, { amount }, context) => {
+      const url = new URL(context.headers.referer).origin;
+
+      const line_items = [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: "donation",
+            },
+            unit_amount: amount * 100,
+          },
+          quantity: 1,
+        },
+      ];
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items,
+        mode: "payment",
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`,
+      });
+
+      return { session: session.id };
     },
   },
   Mutation: {
