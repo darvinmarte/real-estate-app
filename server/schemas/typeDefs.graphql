@@ -35,11 +35,16 @@ const typeDefs = `
     zillowID: String!
     comments: [Comment]
     }
+
   type Comment {
     _id: ID!
     comment: String!
     authorName: String!
     dateCreated: String!
+  }
+
+  type Checkout {
+    session: ID
   }
 
   type Query {
@@ -53,6 +58,9 @@ const typeDefs = `
 
     #queries for ListingComments
     listingComments(zillowId: String!): ListingComment
+
+#queries for Checkout
+    checkout(amount: Int): Checkout
   }
 
   type Mutation {

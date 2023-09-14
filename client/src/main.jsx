@@ -9,15 +9,18 @@ import Listings from './pages/Listings.jsx';
 import SingleListing from './pages/SingleListing.jsx';
 import Forum from './pages/Forum.jsx';
 import SingleForumTopic from './pages/SingleForumTopic.jsx';
+import Support from './pages/Support.jsx';
+import Checkout from './pages/SupportCheckout.jsx';
 
-import { ThemeProvider, createTheme} from '@mui/material'
+import Success from './pages/Success.jsx'
+import { ThemeProvider, createTheme } from '@mui/material'
 
 import ErrorPage from './pages/ErrorPage';
 
 // import SignOut from './components/SignOut/Signout.jsx';
 
 const theme = createTheme({
-  palette:{
+  palette: {
     primary: {
       main: '#216869'
     },
@@ -58,14 +61,26 @@ const router = createBrowserRouter([
       },
       {
         path: '/forum/:topicId',
-        element: <SingleForumTopic/>
+        element: <SingleForumTopic />
       },
+      {
+        path: '/checkout',
+        element: <Checkout />
+      },
+      {
+        path: '/success',
+        element: <Success />
+      },
+      {
+        path: '/support',
+        element: <Support />
+      }
     ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>
-  <RouterProvider router={router} />
-   </ThemeProvider> 
+    <RouterProvider router={router} />
+  </ThemeProvider>
 )
