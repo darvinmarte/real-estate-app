@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import ForumCommentsList from '../components/ForumCommentsList';
 import ForumCommentsForm from '../components/ForumCommentsForm';
 
-import { Container, Card, CardHeader, CardContent, Typography, Stack, Button } from "@mui/material";
+import { Container, Card, CardHeader, CardContent, Typography, Stack, Button, Box } from "@mui/material";
 
 import { QUERY_SINGLE_TOPIC } from '../utils/queries';
 
@@ -34,7 +34,7 @@ const SingleForumTopic = () => {
     }
     
     return (
-        <main>
+        <Box m={2}>
             
 
             <Container maxWidth="lg">
@@ -68,7 +68,7 @@ const SingleForumTopic = () => {
                 </Stack>
 
             </Container>
-        </main>
+        </Box>
     );
 };
 

@@ -5,7 +5,7 @@ import { REMOVE_TOPIC } from '../../utils/mutations';
 import { QUERY_TOPICS } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
-
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Card, Button, CardContent, CardActions, CardHeader, Stack, Typography, Grid, Container, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from "@mui/material";
 
 import { useState } from "react";
@@ -130,8 +130,8 @@ const TopicList = ({ topics }) => {
 
                   <Grid item sx={{ '& button': { m: 1 } }}>
                     {username === topic.author && (
-                      <Button variant="outlined" color="error" onClick={() => { setTopicId(topic._id); handleClickOpen() }}>
-                      REMOVE TOPIC
+                      <Button  startIcon={<DeleteIcon />} color="error" onClick={() => { setTopicId(topic._id); handleClickOpen() }}>
+                    
                     </Button> )}
 
                     <Button variant="outlined">

@@ -87,3 +87,17 @@ mutation addListingComment($zillowId: String!, $comment: String!, $authorName: S
     }
   }
 }`;
+
+
+export const REMOVE_COMMENT = gql`
+  mutation removeComment($zillowId: String!, $commentId: ID!) {
+    removeComment(zillowId: $zillowId, commentId: $commentId) {
+      _id
+      zillowID
+      comments{
+        comment
+        authorName
+      }
+    }
+  }
+`;

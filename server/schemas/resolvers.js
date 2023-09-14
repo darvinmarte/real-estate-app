@@ -200,7 +200,31 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-  },
-};
 
+
+    removeComment: async(
+      parent, { zillowId, commentId },context)=>{
+    //if the user is logged in
+    if(context.user){
+      const {data} = await ListingComment.findOneAndUpdate(
+        {zillowID: zillowId},
+        {
+          $pull:{
+            comments:{
+              _id: commentId,
+              authorName: context.user.name
+            }
+          }
+        },{
+          new: true, runValidators: true 
+        }
+        )
+        return data;
+      }
+      throw AuthenticationError;
+    }
+
+  },
+}
+  
 module.exports = resolvers;
