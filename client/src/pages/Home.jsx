@@ -32,11 +32,10 @@ const Home = () => {
           {/* <Typography className="textOver" variant="h6">Welcome to PropertyPulse where you find your next home and learn all about it!</Typography> */}
         </div>
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ sm: 4, md: 12 }}>
-          <Grid item md={4}>
+          <Grid className='homepageCard' item md={4}>
             
               <Card sx={{ maxWidth: 345 }}>
-              <Link to="/listings" style={{ textDecoration: "none" }}>
-                {/* <CardActionArea> */}
+              <Link to="/listings">
                   <CardMedia
                     component="img"
                     height="140"
@@ -51,7 +50,6 @@ const Home = () => {
                       Browse listings below for rent and for sale.
                     </Typography>
                   </CardContent>
-                {/* </CardActionArea> */}
             </Link>
                 <CardActions>
                   <Link to="/listings">
@@ -64,11 +62,10 @@ const Home = () => {
             
           </Grid>
 
-          <Grid item md={4}>
+          <Grid className='homepageCard' item md={4}>
             
               <Card sx={{ maxWidth: 345 }}>
-              <Link to="/forum" style={{ textDecoration: "none" }}>
-                {/* <CardActionArea> */}
+              <Link to="/forum">
                   <CardMedia
                     component="img"
                     height="140"
@@ -83,7 +80,6 @@ const Home = () => {
                       Join conversations about all things real estate.
                     </Typography>
                   </CardContent>
-                {/* </CardActionArea> */}
                 </Link>
                 <CardActions>
                   <Link to="/forum">
@@ -95,11 +91,11 @@ const Home = () => {
             
           </Grid>
 
-          <Grid item md={4}>
+          <Grid className='homepageCard' item md={4}>
             
               <Card sx={{ maxWidth: 345 }}>
-            <Link to="/login" style={{ textDecoration: "none" }}>
-                <CardActionArea>
+            <Link to="/login">
+             
                   <CardMedia
                     component="img"
                     height="140"
@@ -114,7 +110,7 @@ const Home = () => {
                       Login or SignUp for full experience.
                     </Typography>
                   </CardContent>
-                </CardActionArea>
+             
             </Link>
                 <CardActions>
                   <Link to="/login">

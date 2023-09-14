@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_TOPICS} from '../utils/queries';
 
-import { Container, Accordion, AccordionSummary, AccordionDetails, Button, Typography } from "@mui/material";
+import { Container, Accordion, AccordionSummary, AccordionDetails, Button, Typography, Box } from "@mui/material";
 
 import TopicList from '../components/TopicList';
 import TopicForm from '../components/TopicForm';
@@ -12,7 +12,7 @@ const Forum = () => {
     // console.log(topics);
 
     return (
-        <main>
+        <Box m={2}>
             <Container>
                 <Accordion>
                     <AccordionSummary>
@@ -33,7 +33,7 @@ const Forum = () => {
                     )}
                
             </Container>
-        </main>
+        </Box>
     );
 };
 

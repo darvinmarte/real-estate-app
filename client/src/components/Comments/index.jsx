@@ -82,7 +82,6 @@ export default function Comments() {
         }
         handleClose();
     };
-    console.log(commentData.comments)
     return (
 
         <>
@@ -109,7 +108,7 @@ export default function Comments() {
             </Dialog>
 
 
-            {commentData.comments.length == 0 ?   <Typography variant="h6" gutterBottom>
+            {(commentData.comments == []) || (commentData.comments == undefined) ?   <Typography variant="h6" gutterBottom>
                 Be the first to write something about this property!
             </Typography>
                 : <Typography variant="h6">Comments:  </Typography>
@@ -117,7 +116,7 @@ export default function Comments() {
 
           
             <Stack spacing={3}>
-                {commentData &&
+                {commentData.comments &&
                     commentData.comments.map(({ comment, authorName, dateCreated, _id }) => (
                         <Card key={_id} variant="outlined">
                             <Stack direction="row" display="flex" justifyContent="space-between">
@@ -145,10 +144,6 @@ export default function Comments() {
                         </Card>
                     ))}
             </Stack>
-
-
-            {!commentData.comments && <Typography>Be the first to write something about this property! </Typography>
-            }
 
             {Auth.loggedIn() ? (
                 <Box style={{ margin: '20px 0' }}>
