@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
 
   return (
-    <footer>
-      <Typography className="myfooter">
+    <footer  className="myfooter">
+      <Typography>
         &copy; 2023 All Rights Reserved
-       <Button component={Link} to="/support" >Click here to support</Button>
       </Typography>
+        <Button variant="outlined"  component={Link} to="/support" >Click here to support</Button>
     </footer>
   );
 };
