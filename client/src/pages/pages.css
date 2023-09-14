@@ -56,3 +56,9 @@ a{
 .supportForm{
     margin:auto;
 }
+
+.flexBox{
+    display: flex !important;
+    flex-direction: column !important;
+    width: 30%
+}

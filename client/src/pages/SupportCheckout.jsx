@@ -35,7 +35,7 @@ export default function SupportCheckout() {
             <Typography>PropertyPulse is thankful for your generosity!</Typography>
             <Typography>If you wish to proceed, click the button to finish the checkout.</Typography>
             {Auth.loggedIn() ? (
-                <Button variant="contained" onClick={submitCheckout}>Finish Checkout</Button>
+                <Button onClick={submitCheckout}>Finish Checkout</Button>
             ) : (
                 <p>Please login to finish your donation.</p>
             )}

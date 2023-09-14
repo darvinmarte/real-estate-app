@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Auth from '../utils/auth'
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 
 
 export default function Support() {
@@ -27,9 +27,9 @@ export default function Support() {
     
             <Typography>If you would like to support PropertyPulse by making a donation, you may do so below:</Typography>
 
-            <form>
+            <form className="flexBox">
                 <TextField id="outlined-basic" label="Amount" variant="outlined" type='number' value={amount} onChange={handleChange} />
-                <Button onClick={handleDonate}>Donate!</Button>
+                <Button variant="contained" onClick={handleDonate}>Donate!</Button>
             </form>
 
         </Grid>
