@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Box, Grid, Typography } from '@mui/material'
 
 
 function Success() {
@@ -13,11 +14,13 @@ function Success() {
     );
 
 return (
-    <div className="text-center">
-        <h1>Success!</h1>
-        <h2>Thank you for your donation!</h2>
-        <h2>You will now be redirected to the home page</h2>
-    </div>
+    <Grid>
+    <Box sx={{ width: '100%', maxWidth: 500 }}>
+        <Typography >Success!</Typography>
+        <Typography>Thank you for your donation!</Typography>
+        <Typography>You will now be redirected to the home page</Typography>
+    </Box>
+    </Grid>
 );
 }
 

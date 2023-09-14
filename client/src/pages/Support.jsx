@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Auth from '../utils/auth'
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 
 
 export default function Support() {
@@ -18,11 +19,19 @@ export default function Support() {
     }
 
     return (
-        <div>
+        <Grid 
+            container 
+            direction="column"
+            justifyContent="space-between"
+            alignItems="center">
+    
+            <Typography>If you would like to support PropertyPulse by making a donation, you may do so below:</Typography>
+
             <form>
-                <input type='number' value={amount} name="amount" onChange={handleChange} />
-                <button onClick={handleDonate}>Donate!</button>
+                <TextField id="outlined-basic" label="Amount" variant="outlined" type='number' value={amount} onChange={handleChange} />
+                <Button onClick={handleDonate}>Donate!</Button>
             </form>
-        </div>
+
+        </Grid>
     )
     }

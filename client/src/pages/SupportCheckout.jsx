@@ -4,6 +4,7 @@ import { QUERY_CHECKOUT } from "..//utils/queries";
 import Auth from "../utils/auth";
 import { useLocation } from "react-router-dom"
 import { useLazyQuery } from "@apollo/client";
+import { Box, Button, Typography } from "@mui/material";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
@@ -29,15 +30,15 @@ export default function SupportCheckout() {
     }
 
     return (
-        <div className="text-center">
-            <h2>You are donating ${amount} to PropertyPulse. </h2>
-            <h3>PropertyPulse is thankful for your generosity!</h3>
-            <h4>If you wish to proceed, click the button to finish the checkout.</h4>
+        <Box class="supportForm">
+            <Typography>You are donating ${amount} to PropertyPulse. </Typography>
+            <Typography>PropertyPulse is thankful for your generosity!</Typography>
+            <Typography>If you wish to proceed, click the button to finish the checkout.</Typography>
             {Auth.loggedIn() ? (
-                <button className="btn btn-primary" onClick={submitCheckout}>Finish Checkout</button>
+                <Button variant="contained" onClick={submitCheckout}>Finish Checkout</Button>
             ) : (
                 <p>Please login to finish your donation.</p>
             )}
-        </div>
+        </Box>
     );
 }
