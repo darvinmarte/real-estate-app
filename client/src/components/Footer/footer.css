@@ -1,11 +1,12 @@
 
 .myfooter {
-    position: fixed;
+    position: relative;
     display: flex;
     flex-direction: column !important;
     left: 0;
     bottom: 0;
     width: 100%;
+    min-height:60px;
     text-align: center;
     background-color: white !important;
 } 
