@@ -3,10 +3,18 @@ import "./pages.css"
 
 import { Link } from 'react-router-dom';
 
+import photo1 from '../assets/images/photo1.jpg';
+import photo2 from '../assets/images/photo2.jpg';
+import photo3 from '../assets/images/photo3.jpg';
+
+import listingsphoto from "../assets/images/listingsphoto.jpg";
+import talksphoto from "../assets/images/talksphoto.jpg";
+import signupphoto from "../assets/images/signupphoto.jpg"
+
 import { Typography, Container, Card, CardContent, CardMedia, Button, CardActionArea, CardActions, Grid } from "@mui/material";
 
 //images provided from unsplash.com
-const images = ['./src/assets/images/photo1.jpg', './src/assets/images/photo2.jpg', './src/assets/images/photo3.jpg']
+const images = [photo1, photo2, photo3]
 // const texts = ['Photo by Daniel Barnes', 'Photo by Fernando Alvarez Rodriguez', 'Photo by John Fornander']
 
 const Home = () => {
@@ -39,7 +47,7 @@ const Home = () => {
                   <CardMedia
                     component="img"
                     height="140"
-                    image="../src/assets/images/listingsphoto.jpg"
+                    image={listingsphoto}
                     alt="listings photo"
                   />
                   <CardContent>
@@ -69,7 +77,7 @@ const Home = () => {
                   <CardMedia
                     component="img"
                     height="140"
-                    image="../src/assets/images/talksphoto.jpg"
+                  image={talksphoto}
                     alt="talk photo"
                   />
                   <CardContent>
@@ -99,7 +107,7 @@ const Home = () => {
                   <CardMedia
                     component="img"
                     height="140"
-                    image="../src/assets/images/signupphoto.jpg"
+                    image={signupphoto}
                     alt="signup photo"
                   />
                   <CardContent>

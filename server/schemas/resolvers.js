@@ -72,7 +72,7 @@ const resolvers = {
     // only if user is logged in be able to delte
 
     login: async (parent, { email, password }) => {
-      console.log(email, password);
+      // console.log(email, password);
       const user = await User.findOne({ email });
 
       if (!user) {
