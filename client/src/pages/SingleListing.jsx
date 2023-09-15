@@ -4,12 +4,18 @@ import { useState, useEffect } from 'react';
 import { CardMedia, Typography, Button, Grid, Container, Stack, Box } from "@mui/material";
 import Comments from '../components/Comments';
 // zID is the id of the listing 
+import Fab from '@mui/material/Fab';
+import NavigationIcon from '@mui/icons-material/Navigation';
 import "./pages.css"
+
 
 const SingleListing = () => {
     const { zID } = useParams();
     const [data, setData] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    //
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,8 +28,20 @@ const SingleListing = () => {
             }
         };
 
+        //
+        const handleScroll = () => {
+            const scrollY = window.scrollY || window.pageYOffset;
+
+        
+            setIsVisible(scrollY > 0);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
         fetchData();
     }, [zID]);
+
+        
 
 
     const handleNextImage = () => {
@@ -36,6 +54,12 @@ const SingleListing = () => {
         if (currentImageIndex > 0) {
             setCurrentImageIndex(currentImageIndex - 1);
         }
+    };
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the page
+            behavior: 'smooth', // Smooth scrolling
+        });
     };
 
     if (!data) {
@@ -50,7 +74,9 @@ const SingleListing = () => {
 
 
         return (
+            
             <Box mt={3}>
+               
                 <Container >
                     <Grid container spacing={2}>
                         <Grid item lg={6} >
@@ -99,6 +125,15 @@ const SingleListing = () => {
                 <div style={{margin:'4%'}}>
                     <Comments zId={zID} className="comments"/>
                 </div>
+                <Fab onClick={scrollToTop} style={{
+                    display: isVisible ? 'block' : 'none', // Show the button when isVisible is true
+                    position: 'fixed',
+                    bottom: '20px',
+                    right: '20px',
+                    backgroundColor: 'transparent', // Make it transparent
+                }} variant="extended">
+                    <NavigationIcon  />
+                </Fab>
             </Box>
         )
 
