@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import {searchCity} from "../utils/API";
+// import API from '../utils/API'
 
 import { Button, Container, TextField, Stack, FormGroup, FormControlLabel , Switch, Typography, Box, Grid, Modal} from '@mui/material';
 import ListingCard from "../components/ListingCard";
@@ -32,7 +33,7 @@ const Listings = () => {
             if(searchThis == ''){
                 handleOpen();
             }else{
-
+                // const data = await API.searchCity(searchThis, sendFilter);
                 const data = await searchCity(searchThis,sendFilter);
                 updateListings(data);
             }

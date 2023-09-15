@@ -1,5 +1,15 @@
 import axios from 'axios';
 
+// const API = {
+//     searchCity: city => {
+//         return axios.get(`/api/city/name/${city}`)
+//     },
+//     searchById: id => {
+//         return axios.get(`/api/city/id/${id}`)
+//     }
+// }
+
+// export default API;
 
 export const searchCity = async (query, filter) =>  {
 

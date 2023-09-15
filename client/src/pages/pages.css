@@ -67,7 +67,7 @@ a{
 
 
 .textBox {
-        position: fixed;
+          position: relative;
             width: 100%;
             height: 75%;
             padding: 20rem;
