@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
-import { TextField, Button, Typography } from '@mui/material'
+import { TextField, Box, Button, Typography } from '@mui/material'
 
 
 import Auth from '../utils/auth';
@@ -47,7 +47,7 @@ const Login = () => {
     return (
         <main className="flex-row justify-center mb-4">
             <div className="col-12 col-lg-10">
-                <Typography variant="h5" align="center" >Login</Typography>
+                <Typography variant="h5" align="center" className='margin-top-3 dark-text' >Login</Typography>
                 <div>
                     {data ? (
                         <p>
@@ -77,16 +77,20 @@ const Login = () => {
                                 value={formState.password}
                                 onChange={handleChange}
                             />
+                
                             <Button
                                 variant="contained" 
                                 style={{ cursor: 'pointer' }}
                                 type="submit"
                             >
-                                Log In!
+                                Log  In!
                             </Button>
+                            <br></br>
+                            <br></br>
                             <Link to="/signup">
-                                <Typography variant="body1"> Sign Up!</Typography>
+                                <Button variant="outlined"> Sign Up!</Button>
                             </Link>
+                            
                         </form>
                     )}
 

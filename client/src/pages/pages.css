@@ -58,8 +58,9 @@ a{
 .flexBox{
     display: flex !important;
     flex-direction: column !important;
-    width: 30%
+    width: 30%;
 }
+
 .homepageCard a{
     text-decoration: none !important;
     color: black;
@@ -71,19 +72,29 @@ a{
             width: 100%;
             height: 75%;
             padding: 20rem;
-            background-color: var(--light);
+            /* background-color: var(--light); */
             color: var(--dark);
             padding: 2%;
             text-align: center;
 }
-.marginTop {
-    margin-top: 6rem !important;
+.margin-top {
+    margin-top: 4rem !important;
     color: white;
 }
-.white-text {
-    color: white;
+.margin-top-3{
+    margin-top: 3rem !important
+}
+.main-text {
+    color: var(--main);
 }
 .dark-text {
-    color: var(--main);
-    font-weight: bold;
+    color: var(--dark) !important;
+    font-weight: bold !important;
+}
+
+.margin-bottom2{
+    margin-bottom: 2rem !important;
+}
+.margin-bottom-10 {
+    margin-bottom: 10rem !important;
 }
