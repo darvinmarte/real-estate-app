@@ -26,13 +26,13 @@ export default function Support() {
                     <Grid
                         container
                         direction="column"
-                        // justifyContent="space-around"
+                     
                         alignItems="center"
                         >
 
-                        <Typography variant="h6" className="marginTop">If you would like to support PropertyPulse by making a donation, you may do so below:</Typography>
+                        <Typography variant="h6" className="margin-top main-text">If you would like to support PropertyPulse by making a donation, you may do so below:</Typography>
 
-                        <form className="flexBox marginTop">
+                        <form className="flexBox margin-top margin-bottom-10">
                             <TextField id="outlined-basic" label="Amount" variant="outlined" type='number' value={amount} onChange={handleChange} />
                             <Button variant="contained" onClick={handleDonate}>Donate!</Button>
                         </form>
@@ -40,7 +40,7 @@ export default function Support() {
                     </Grid>
                 ) : (
                     <Grid>
-                    <Typography variant="h4" className="marginTop"> Please login to donate!</Typography>
+                    <Typography variant="h4" className="margin-top main-text margin-bottom-10"> Please login to donate!</Typography>
                         </Grid>
                 )
             }
