@@ -1,10 +1,15 @@
+import './footer.css'
+import { Typography, Button } from "@mui/material";
+import { Link } from 'react-router-dom'
+
 const Footer = () => {
 
   return (
-    <footer>
-      <div className="container text-center">
-        <h4>&copy; 2023 This is footer</h4>
-      </div>
+    <footer  className="myfooter">
+      <Typography>
+        &copy; 2023 All Rights Reserved
+      </Typography>
+        <Button variant="outlined"  component={Link} to="/support" >Click here to support</Button>
     </footer>
   );
 };

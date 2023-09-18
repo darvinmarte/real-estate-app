@@ -1,22 +1,83 @@
+
 const typeDefs = `
   type User {
-    _id: ID
-    name: String
-    email: String
-    password: String
+    _id: ID!
+    name: String!
+    email: String!
+    password: String!
+    about: String!
+    posts: [ForumTopic]!
   }
 
   type Auth {
     token: ID!
-    user: User
+    user: User!
+  }
+
+  type ForumTopic {
+    _id: ID!
+    title: String!
+    content: String!
+    author: String!
+    createdAt: String!
+    comments: [ForumComment]!
+  }
+
+  type ForumComment {
+    _id: ID!
+    commentText: String!
+    commentAuthor: String!
+    createdAt: String
+  }
+
+  type ListingComment {
+    _id:ID!
+    zillowID: String!
+    comments: [Comment]
+    }
+
+  type Comment {
+    _id: ID!
+    comment: String!
+    authorName: String!
+    dateCreated: String!
+  }
+
+  type Checkout {
+    session: ID
   }
 
   type Query {
-    # queries will be here
+    #queries for User
+    me: User
+
+    # queries for Forum
+    getAllForumTopics: [ForumTopic]!
+    getOneForumTopic(topicId: ID!): ForumTopic
+    # getForumComments(topicId: ID!): ForumComment
+
+    #queries for ListingComments
+    listingComments(zillowId: String!): ListingComment
+
+#queries for Checkout
+    checkout(amount: Int): Checkout
   }
 
   type Mutation {
-    # mutations will be here
+    #mutations for User
+
+    addProfile(name: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+
+    # mutations for Forum
+    addForumTopic(title: String!, content: String!): ForumTopic
+    addForumComment(topicId: ID!, commentText: String!): ForumTopic
+    removeForumTopic(topicId: ID!): ForumTopic
+    removeForumComment(topicId: ID!, commentId: ID!): ForumTopic
+
+    #mutation for ListingComments
+    addListingComment(zillowID:String!, comment: String!, authorName: String!): ListingComment
+    removeComment(zillowId: String!, commentId: ID!):ListingComment
   }
 `;
 
