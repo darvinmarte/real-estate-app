@@ -25,7 +25,7 @@
     "@stripe/stripe-js": "^1.29.0",
     "dotenv": "^16.3.1",
     "styled-components": "^5.3.11"
-  }, 
+  },
   "engines": {
     "node": "18.16.0"
   }
