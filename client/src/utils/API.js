@@ -1,15 +1,5 @@
 import axios from 'axios';
 
-// const API = {
-//     searchCity: city => {
-//         return axios.get(`/api/city/name/${city}`)
-//     },
-//     searchById: id => {
-//         return axios.get(`/api/city/id/${id}`)
-//     }
-// }
-
-// export default API;
 
 export const searchCity = async (query, filter) =>  {
 
@@ -23,7 +13,7 @@ export const searchCity = async (query, filter) =>  {
             status : filter
         },
         headers: {
-            'X-RapidAPI-Key': '5932463005msha3ed8e2f210665ep1e2f5cjsne6bc7cc14e2c',
+            'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
             'X-RapidAPI-Host': 'zillow56.p.rapidapi.com'
         }
     };
